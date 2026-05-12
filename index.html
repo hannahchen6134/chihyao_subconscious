@@ -7,7 +7,7 @@
 <meta name="description" content="八字命理師、美國 NGH 催眠師。以八字帶你改變命運，以療育陪你活出自己。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Sacramento&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================
    Tokens — 鵝黃手繪風
@@ -876,16 +876,17 @@ body::before {
   padding: 0 2rem;
 }
 .hero-eyebrow {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.36em;
-  color: var(--color-yellow-deep);
-  margin-bottom: 2.4rem;
+  font-family: 'Sacramento', 'Caveat', var(--font-display);
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: rgba(184, 144, 44, 0.6);
+  margin-bottom: 2rem;
   display: inline-block;
   padding-left: 3.2rem;
   position: relative;
+  line-height: 1.3;
 }
 .hero-eyebrow::before {
   content: '';
@@ -893,7 +894,7 @@ body::before {
   left: 0; top: 50%;
   width: 2.4rem;
   height: 1px;
-  background: var(--color-yellow-deep);
+  background: rgba(184, 144, 44, 0.4);
 }
 .hero h1 {
   font-family: var(--font-serif);
@@ -2041,7 +2042,7 @@ body::before {
    CTA STRIP
    ============================================ */
 .cta-strip {
-  background: linear-gradient(180deg, #FAF1D8 0%, #F5E5B5 100%);
+  background: transparent;
   padding: 6rem 0;
   position: relative;
   overflow: hidden;
@@ -2054,8 +2055,38 @@ body::before {
   background-size: cover;
   background-position: center 60%;
   background-repeat: no-repeat;
-  filter: saturate(0.55) brightness(1.15) contrast(0.93);
+  filter: saturate(0.25) brightness(1.35) contrast(0.78);
+  opacity: 0.5;
   z-index: 0;
+  /* 多斷點極平滑漸變，肉眼幾乎察覺不到分界 */
+  -webkit-mask-image: linear-gradient(180deg,
+    transparent  0%,
+    rgba(0,0,0,0.05) 5%,
+    rgba(0,0,0,0.15) 10%,
+    rgba(0,0,0,0.3) 18%,
+    rgba(0,0,0,0.5) 28%,
+    rgba(0,0,0,0.75) 40%,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,0.75) 75%,
+    rgba(0,0,0,0.5) 85%,
+    rgba(0,0,0,0.25) 92%,
+    rgba(0,0,0,0.1) 96%,
+    transparent 100%);
+  mask-image: linear-gradient(180deg,
+    transparent  0%,
+    rgba(0,0,0,0.05) 5%,
+    rgba(0,0,0,0.15) 10%,
+    rgba(0,0,0,0.3) 18%,
+    rgba(0,0,0,0.5) 28%,
+    rgba(0,0,0,0.75) 40%,
+    rgba(0,0,0,1) 55%,
+    rgba(0,0,0,1) 65%,
+    rgba(0,0,0,0.75) 75%,
+    rgba(0,0,0,0.5) 85%,
+    rgba(0,0,0,0.25) 92%,
+    rgba(0,0,0,0.1) 96%,
+    transparent 100%);
 }
 .cta-strip::after {
   content: '';
@@ -2063,13 +2094,13 @@ body::before {
   inset: 0;
   background:
     linear-gradient(180deg,
-      rgba(250, 241, 216, 1) 0%,
-      rgba(250, 241, 216, 0.92) 8%,
-      rgba(248, 235, 200, 0.72) 25%,
-      rgba(248, 232, 190, 0.6) 50%,
-      rgba(248, 232, 190, 0.78) 75%,
-      rgba(245, 229, 181, 0.95) 92%,
-      rgba(245, 229, 181, 1) 100%);
+      rgba(250, 241, 216, 0) 0%,
+      rgba(250, 241, 216, 0.15) 10%,
+      rgba(248, 235, 200, 0.35) 30%,
+      rgba(248, 232, 190, 0.42) 50%,
+      rgba(248, 232, 190, 0.35) 70%,
+      rgba(245, 229, 181, 0.15) 90%,
+      rgba(245, 229, 181, 0) 100%);
   z-index: 1;
 }
 .cta-strip-inner { position: relative; z-index: 2; }
@@ -2373,6 +2404,303 @@ body::before {
   .service-card { padding: 2rem 1.4rem 1.8rem; }
 }
 </style>
+<style>
+/* ============================================
+   首頁進階動畫（疊在原有之上）
+   - 全部用 transform/opacity（GPU 加速）
+   - 手機自動減量
+   - 尊重 prefers-reduced-motion
+   ============================================ */
+
+/* === 1. Hero 金色光粒漂浮 === */
+.hero-dust {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 2;
+}
+.hero-dust-particle {
+  position: absolute;
+  bottom: -20px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 197, 71, 0.85), rgba(232, 197, 71, 0) 70%);
+  animation: hero-dust-rise var(--dur, 22s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  left: var(--left, 50%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+@keyframes hero-dust-rise {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  10%  { opacity: 0.7; }
+  50%  { transform: translate3d(18px, -40vh, 0); opacity: 0.9; }
+  90%  { opacity: 0.25; }
+  100% { transform: translate3d(-12px, -85vh, 0); opacity: 0; }
+}
+
+/* === 2. 鼠標跟隨柔光（桌面 hover 才顯示） === */
+.hero-cursor-glow { display: none !important; }
+
+/* === 3. 標題每個字 hover 微浮 + 染金 === */
+@media (hover: hover) {
+  .char-fade.visible {
+    transition: opacity 0.7s ease, transform 0.4s ease, color 0.3s ease;
+  }
+  .char-fade.visible:hover {
+    transform: translateY(-2px);
+    color: var(--color-gold, #B8902C);
+  }
+}
+
+/* === 4. Brush underline 完成後緩慢呼吸光暈 === */
+.brush-underline.visible {
+  animation: brush-pulse-glow 4s ease-in-out infinite 2.5s;
+}
+@keyframes brush-pulse-glow {
+  0%, 100% { text-shadow: 0 0 0 rgba(232, 197, 71, 0); }
+  50%      { text-shadow: 0 0 10px rgba(232, 197, 71, 0.18); }
+}
+
+/* === 5. CTA 按鈕內部柔光緩慢掃過 === */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%);
+  transform: translateX(-100%);
+  animation: btn-soft-shine 5s ease-in-out infinite 3s;
+  pointer-events: none;
+  z-index: 0;
+}
+@keyframes btn-soft-shine {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(100%); }
+  100% { transform: translateX(100%); }
+}
+.btn-primary > * { position: relative; z-index: 1; }
+
+/* === 6. Hero scroll 指示器溫和上下飄 === */
+.hero-scroll {
+  animation: hero-scroll-float 3s ease-in-out infinite;
+}
+@keyframes hero-scroll-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+/* === 7. 整個 hero 區的太陽光暈微微呼吸（補強現有） === */
+.hero-sun-glow {
+  animation: sun-soft-breath 8s ease-in-out infinite;
+}
+@keyframes sun-soft-breath {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50%      { transform: scale(1.06); opacity: 1; }
+}
+
+/* ============================================
+   手機優化：減量、停用昂貴特效
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-cursor-glow { display: none !important; } /* 手機沒滑鼠 */
+  /* 只保留 4 顆粒子，省 GPU */
+  .hero-dust-particle:nth-child(n+5) { display: none; }
+  /* btn shine 拉慢 */
+  .btn-primary::after { animation-duration: 7s; }
+  /* sun glow 簡化 */
+  .hero-sun-glow { animation: none; }
+}
+
+@media (max-width: 480px) {
+  /* 更窄螢幕只保留 2 顆粒子 */
+  .hero-dust-particle:nth-child(n+3) { display: none; }
+  .brush-underline.visible { animation: none; }
+}
+
+/* ============================================
+   無障礙：使用者偏好減少動效時全關
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-dust-particle,
+  .brush-underline.visible,
+  .btn-primary::after,
+  .hero-scroll,
+  .hero-sun-glow,
+  .char-fade { animation: none !important; }
+  .char-fade {
+    transition: opacity 0.3s ease !important;
+    transform: none !important;
+  }
+}
+
+
+/* ============================================
+   全站優雅動態感（IntersectionObserver 啟動）
+   - 各區進入視窗時觸發
+   - 全部 transform/opacity，GPU 加速
+   ============================================ */
+
+/* === Section eyebrow 金線書寫進場 === */
+.eyebrow-cn {
+  position: relative;
+  display: inline-flex;
+}
+.eyebrow-cn.in-view::before,
+.eyebrow-cn.in-view::after {
+  animation: eyebrow-line-draw 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes eyebrow-line-draw {
+  0%   { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0.6; }
+}
+.eyebrow-cn::before,
+.eyebrow-cn::after {
+  transform-origin: left center;
+  transition: opacity 0.4s ease;
+}
+.eyebrow-cn::after { transform-origin: right center; }
+
+/* === Section H2 進場時微光描繪 === */
+.section-header h2.in-view {
+  animation: h2-soft-reveal 1.4s ease-out forwards;
+}
+@keyframes h2-soft-reveal {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* === Service card 緩慢縮放呼吸（除了原本 float） === */
+@media (hover: hover) {
+  .service-card {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-8px) scale(1.012);
+    box-shadow: 0 24px 50px rgba(90, 70, 50, 0.10);
+  }
+  .service-icon {
+    transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .service-card:hover .service-icon {
+    transform: rotate(8deg) scale(1.1);
+  }
+}
+
+/* === 分隔線（hr 或 .divider）緩慢從中心畫出 === */
+.hero-divider.in-view {
+  animation: divider-ink-draw 1.6s ease-out forwards;
+}
+@keyframes divider-ink-draw {
+  0%   { transform: scaleX(0); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 1; }
+}
+
+/* === fade-in 改良：加上微微 scale 進來更有動態 === */
+.fade-in.elegant {
+  opacity: 0;
+  transform: translateY(20px) scale(0.985);
+  filter: blur(2px);
+  transition:
+    opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 1.4s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 1.4s ease-out;
+}
+.fade-in.elegant.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* === 連結 hover 底線從左掠至右（給 nav-menu）=== */
+.nav-menu a::after {
+  transform-origin: left center;
+}
+.nav-menu a:hover::after {
+  transform-origin: right center;
+}
+
+/* === Background 微微漸層循環呼吸（整頁微調明度） === */
+body {
+  background-attachment: fixed;
+  position: relative;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 0%,
+    rgba(255, 235, 195, 0.025) 0%,
+    transparent 60%);
+  z-index: 1;
+  animation: bg-warm-breath 14s ease-in-out infinite;
+  opacity: 0;
+}
+.body-loaded body::after,
+body.loaded::after {
+  opacity: 1;
+}
+@keyframes bg-warm-breath {
+  0%, 100% { opacity: 0.3; }
+  50%      { opacity: 0.7; }
+}
+
+/* === 服務卡 icon 緩慢自轉（極慢，氛圍感） === */
+.service-icon svg {
+  animation: gentle-rotate 60s linear infinite;
+}
+@keyframes gentle-rotate {
+  to { transform: rotate(360deg); }
+}
+
+/* === Footer slogan 文字光波 === */
+.footer-slogan {
+  background: linear-gradient(90deg,
+    var(--color-brown-deep, #3A2A14) 0%,
+    var(--color-gold, #B8902C) 50%,
+    var(--color-brown-deep, #3A2A14) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: footer-text-flow 8s ease-in-out infinite;
+}
+@keyframes footer-text-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+/* ============================================
+   手機版減量
+   ============================================ */
+@media (max-width: 768px) {
+  .service-icon svg { animation: none; } /* 自轉吃 CPU，手機停 */
+  body::after { animation-duration: 20s; }
+  .footer-slogan { animation: none; -webkit-text-fill-color: var(--color-brown-deep, #3A2A14); background: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-icon svg,
+  .footer-slogan,
+  body::after,
+  .hero-divider.in-view,
+  .section-header h2.in-view,
+  .eyebrow-cn.in-view::before,
+  .eyebrow-cn.in-view::after,
+  .fade-in.elegant { animation: none !important; transition: opacity 0.3s ease !important; }
+}
+
+</style>
 </head>
 <body>
 
@@ -2425,6 +2753,22 @@ body::before {
      HERO — 細緻 SVG 山景 + 手繪植物
      ============================================ -->
 <section class="hero" id="top">
+
+  <!-- 進階動畫：金色光粒（8 顆，手機自動減量到 4 顆） -->
+  <div class="hero-dust" aria-hidden="true">
+    <span class="hero-dust-particle" style="--left:8%;  --delay:0s;  --dur:22s;"></span>
+    <span class="hero-dust-particle" style="--left:20%; --delay:4s;  --dur:26s;"></span>
+    <span class="hero-dust-particle" style="--left:34%; --delay:8s;  --dur:20s;"></span>
+    <span class="hero-dust-particle" style="--left:48%; --delay:2s;  --dur:25s;"></span>
+    <span class="hero-dust-particle" style="--left:60%; --delay:6s;  --dur:23s;"></span>
+    <span class="hero-dust-particle" style="--left:72%; --delay:10s; --dur:27s;"></span>
+    <span class="hero-dust-particle" style="--left:84%; --delay:3s;  --dur:21s;"></span>
+    <span class="hero-dust-particle" style="--left:94%; --delay:7s;  --dur:24s;"></span>
+  </div>
+
+  <!-- 進階動畫：滑鼠跟隨柔光（手機自動隱藏） -->
+  <div class="hero-cursor-glow" id="heroCursorGlow" aria-hidden="true"></div>
+
   <!-- 主背景圖（水彩潑墨遮罩） -->
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-bottom-fade" aria-hidden="true"></div>
@@ -3311,6 +3655,57 @@ body::before {
       }
     }, { passive: true });
   }
+
+  // ==========================================
+  // Hero 滑鼠跟隨柔光（桌面 only、尊重 reduced motion）
+  // ==========================================
+  (function() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(hover: none)').matches) return; // 沒滑鼠的裝置直接跳過
+    var glow = document.getElementById('heroCursorGlow');
+    var hero = document.querySelector('.hero');
+    if (!glow || !hero) return;
+    var rafId = null;
+    var pendingX = 0, pendingY = 0;
+    function update() {
+      glow.style.left = pendingX + 'px';
+      glow.style.top  = pendingY + 'px';
+      rafId = null;
+    }
+    hero.addEventListener('mousemove', function(e) {
+      var rect = hero.getBoundingClientRect();
+      pendingX = e.clientX - rect.left;
+      pendingY = e.clientY - rect.top;
+      if (!rafId) rafId = requestAnimationFrame(update);
+    }, { passive: true });
+    hero.addEventListener('mouseleave', function() {
+      glow.style.opacity = '0';
+    });
+    hero.addEventListener('mouseenter', function() {
+      glow.style.opacity = '';
+    });
+  })();
+
+  // ==========================================
+  // 優雅動態感：scroll 觸發 in-view class
+  // ==========================================
+  (function() {
+    var elegantObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          elegantObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.25, rootMargin: '0px 0px -60px 0px' });
+
+    document.querySelectorAll('.eyebrow-cn, .section-header h2, .hero-divider').forEach(function(el) {
+      elegantObserver.observe(el);
+    });
+
+    // 標記頁面已載入，啟動背景動畫
+    setTimeout(function() { document.body.classList.add('loaded'); }, 100);
+  })();
 </script>
 
 </body>
