@@ -81,11 +81,11 @@
         html.push('<h3>' + inline(block.replace(/^### /, '')) + '</h3>');
         return;
       }
-      // 引用
+      // 引用 —— 用 \n 接，inline() 內會轉成 <br>
       if (/^> /.test(block)) {
         var quote = block.split('\n').map(function(l) {
           return l.replace(/^> ?/, '');
-        }).join('<br>');
+        }).join('\n');
         html.push('<blockquote><p>' + inline(quote) + '</p></blockquote>');
         return;
       }
@@ -110,8 +110,8 @@
         html.push('<ol>' + items.join('') + '</ol>');
         return;
       }
-      // 一般段落（可能多行）
-      html.push('<p>' + inline(block.replace(/\n/g, '<br>')) + '</p>');
+      // 一般段落（可能多行）—— 換行轉 <br> 移到 inline() 內 escapeHtml 之後
+      html.push('<p>' + inline(block) + '</p>');
     });
 
     return html.join('\n');
@@ -119,6 +119,8 @@
 
   function inline(text) {
     text = escapeHtml(text);
+    // 換行轉 <br>（在 escapeHtml 之後，這樣 <br> 才會是真的 HTML 而不會被跳脫）
+    text = text.replace(/\n/g, '<br>');
     // 還原圖片（避免被 escapeHtml 破壞）
     text = text.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, function(_, alt, url) {
       return '<img src="' + url + '" alt="' + alt + '" style="max-width:100%;">';
