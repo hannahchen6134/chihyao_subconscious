@@ -132,6 +132,21 @@
     return text;
   }
 
+
+  // 將各種日期字串轉成 YYYY-MM-DD（表單回應的日期可能是斜線、月日全寫等）
+  function normalizeDate(s) {
+    if (!s) return '';
+    if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
+    var d = new Date(s);
+    if (!isNaN(d.getTime())) {
+      var y = d.getFullYear();
+      var m = ('0' + (d.getMonth() + 1)).slice(-2);
+      var dd = ('0' + d.getDate()).slice(-2);
+      return y + '-' + m + '-' + dd;
+    }
+    return s;
+  }
+
   // ===== Cache helpers =====
   var CACHE_KEY = 'zhiyao-articles-cache';
   function getCache() {
@@ -162,17 +177,19 @@
         if (rows.length < 2) return [];
         // 第 1 列是欄位名稱，跳過
         var articles = rows.slice(1).filter(function(r) {
-          return r[0] && r[1]; // 至少要有 ID + 標題
+          // 表單回覆分頁第 0 欄是時間戳記，跳過。文章ID 在第 1 欄、大標題在第 2 欄
+          return r[1] && r[2]; // 至少要有 ID + 標題
         }).map(function(r) {
           return {
-            id: (r[0] || '').trim(),
-            title: (r[1] || '').trim(),
-            subtitle: (r[2] || '').trim(),
-            category: (r[3] || '').trim(),
-            date: (r[4] || '').trim(),
-            excerpt: (r[5] || '').trim(),
-            cover: (r[6] || '').trim(),
-            content: r[7] || ''
+            // A 欄 r[0] = 時間戳記（不用）
+            id: (r[1] || '').trim(),
+            title: (r[2] || '').trim(),
+            subtitle: (r[3] || '').trim(),
+            category: (r[4] || '').trim(),
+            date: normalizeDate((r[5] || '').trim()),
+            excerpt: (r[6] || '').trim(),
+            cover: (r[7] || '').trim(),
+            content: r[8] || ''
           };
         });
         // 依日期降序排

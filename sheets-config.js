@@ -40,10 +40,10 @@
 
 window.SHEETS_CONFIG = {
   // 把下面這串換成你 Google Sheet 的 ID
-  SHEET_ID: '1XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',
+  SHEET_ID: '1icad-PhV1Nl92CfMEZkHUA_UNvoS15JDvOqDA1L52RQ',
 
   // 工作表名稱（預設「文章」，要跟你 Sheet 裡的分頁名一致）
-  SHEET_NAME: '文章',
+  SHEET_NAME: '表單回覆 1',
 
   // 自動快取分鐘數（避免每次讀取都打 Google）
   // 老師新增文章後，最多等這麼久才會看到
