@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>專欄文章｜智堯　八字命理 × 催眠療育</title>
+<meta name="description" content="智堯的專欄：分享八字、催眠與身心成長的觀察與練習。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-gold: #B8924A;
+  --color-gold-deep: #9C7838;
+  --color-gold-light: rgba(184, 146, 74, 0.15);
+  --color-gold-border: rgba(184, 146, 74, 0.28);
+  --color-brown-deep: #3A2A14;
+  --color-brown-medium: #5C4A36;
+  --color-brown-soft: #8B7B6B;
+  --color-text-primary: #3A2A14;
+  --color-text-secondary: #6B5B47;
+  --color-text-tertiary: #A89B8C;
+  --color-bg-primary: #FAF6F0;
+  --color-bg-secondary: #F5EFE4;
+  --color-bg-tertiary: #EFE6D3;
+  --color-bg-card: #FFFFFF;
+  --color-border: rgba(90, 70, 50, 0.08);
+  --color-border-soft: rgba(90, 70, 50, 0.05);
+  --color-border-hover: rgba(184, 146, 74, 0.32);
+  --font-serif: 'Noto Serif TC', serif;
+  --font-sans: 'Noto Sans TC', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img, svg { display: block; max-width: 100%; }
+button, a, label { -webkit-tap-highlight-color: transparent; }
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: var(--color-brown-deep);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+
+/* ============================================
+   NAV (與首頁一致)
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.4rem 0;
+  background: rgba(250, 246, 240, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-soft);
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+.nav.scrolled {
+  padding: 1rem 0;
+  background: rgba(250, 246, 240, 0.94);
+  box-shadow: 0 1px 24px rgba(90, 70, 50, 0.04);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-brand-mark {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.12em;
+}
+.nav-brand-tag {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--color-gold-border);
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+.nav-brand-tag-main {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.18em;
+}
+.nav-brand-tag-sub {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+}
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+  list-style: none;
+}
+.nav-menu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.16em;
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color 0.3s ease;
+}
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+}
+.nav-menu a:hover { color: var(--color-brown-deep); }
+.nav-menu a:hover::after { width: 100%; }
+.nav-menu a.active { color: var(--color-brown-deep); }
+.nav-menu a.active::after { width: 100%; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(184, 146, 74, 0.22);
+  transition: all 0.4s ease;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(184, 146, 74, 0.32); }
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  z-index: 110;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--color-brown-deep);
+  border-radius: 2px;
+}
+.nav-hamburger.open span:nth-child(1),
+.nav-hamburger.open span:nth-child(2),
+.nav-hamburger.open span:nth-child(3) {
+  transform: none;
+  opacity: 1;
+}
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--color-bg-primary);
+  padding: 5rem 2rem 2rem;
+  z-index: 105;
+  transition: right 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -10px 0 40px rgba(90, 70, 50, 0.08);
+}
+.nav-drawer.open { right: 0; }
+.nav-drawer ul { list-style: none; }
+.nav-drawer li { border-bottom: 1px solid var(--color-border); }
+.nav-drawer a {
+  display: block;
+  padding: 1.2rem 0;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.18em;
+}
+.nav-drawer-cta {
+  display: block;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  color: #fff !important;
+  text-align: center;
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(58, 42, 20, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 102;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.nav-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ============================================
+   PAGE HEADER
+   ============================================ */
+.page-header {
+  position: relative;
+  padding: 11rem 0 5rem;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(244, 220, 168, 0.4) 0%, transparent 60%),
+    linear-gradient(180deg, #FAF6F0 0%, #F5EFE4 100%);
+  overflow: hidden;
+}
+.page-header-deco {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+.page-header-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.page-eyebrow {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.4em;
+  color: var(--color-gold-deep);
+  margin-bottom: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+.page-eyebrow::before, .page-eyebrow::after {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.6;
+}
+.page-header h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+  color: var(--color-brown-deep);
+}
+.page-header p {
+  font-family: var(--font-serif);
+  font-size: 15.5px;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.08em;
+  line-height: 2;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   FILTER (分類 tabs)
+   ============================================ */
+.filter-bar {
+  background: var(--color-bg-primary);
+  padding: 2.5rem 0 1rem;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 70px;
+  z-index: 50;
+  background: rgba(250, 246, 240, 0.94);
+  backdrop-filter: blur(12px);
+}
+.filter-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.filter-btn {
+  padding: 0.6rem 1.4rem;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.16em;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+.filter-btn:hover {
+  border-color: var(--color-gold-border);
+  color: var(--color-brown-deep);
+}
+.filter-btn.active {
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(184, 146, 74, 0.22);
+}
+
+/* ============================================
+   ARTICLES GRID
+   ============================================ */
+.articles-section {
+  padding: 4rem 0 7rem;
+  background: var(--color-bg-primary);
+}
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 1.8rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.article-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+@media (hover: hover) {
+  .article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(90, 70, 50, 0.06);
+    border-color: var(--color-gold-border);
+  }
+}
+.article-cover {
+  aspect-ratio: 16 / 10;
+  position: relative;
+  overflow: hidden;
+}
+.article-cover svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: transform 1.4s ease;
+}
+@media (hover: hover) {
+  .article-card:hover .article-cover svg { transform: scale(1.04); }
+}
+.article-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  color: var(--color-brown-deep);
+  z-index: 2;
+}
+.article-body {
+  padding: 1.6rem 1.6rem 1.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.article-card h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  color: var(--color-brown-deep);
+}
+.article-excerpt {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  margin-bottom: 1.2rem;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 12.5px;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.1em;
+}
+.article-meta-arrow {
+  color: var(--color-gold);
+  font-size: 14px;
+  transition: transform 0.4s ease;
+}
+.article-card:hover .article-meta-arrow { transform: translateX(4px); }
+
+/* ============================================
+   ARTICLE COVER IMAGE (from Sheets)
+   ============================================ */
+.article-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.article-card:hover .article-cover img { transform: scale(1.04); }
+.article-cover-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   LOADING / EMPTY / SETUP STATES
+   ============================================ */
+.articles-status {
+  text-align: center;
+  padding: 5rem 2rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-serif);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+.articles-status .loader-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-gold-border);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  margin: 0 auto 1.4rem;
+  animation: loader-spin 0.9s linear infinite;
+}
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+.articles-status h3 {
+  font-size: 1.15rem;
+  color: var(--color-brown-deep);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.articles-status p {
+  font-size: 14px;
+  max-width: 460px;
+  margin: 0 auto;
+}
+.articles-status code {
+  background: var(--color-gold-light);
+  color: var(--color-gold-deep);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 4rem;
+}
+.page-btn {
+  min-width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.04em;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  padding: 0 0.6rem;
+}
+.page-btn:hover {
+  border-color: var(--color-gold-border);
+  color: var(--color-brown-deep);
+}
+.page-btn.active {
+  background: var(--color-gold);
+  color: #fff;
+  border-color: var(--color-gold);
+}
+.page-btn.prev, .page-btn.next {
+  font-family: var(--font-serif);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--color-bg-tertiary);
+  padding: 4.5rem 0 2rem;
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.footer-brand-mark {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-brown-deep);
+  margin-bottom: 1rem;
+}
+.footer-tag {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  margin-bottom: 0.4rem;
+}
+.footer-tag-sub {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+.footer-col h5 {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.24em;
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.footer-col a:hover { color: var(--color-gold-deep); }
+.footer-col a svg { width: 14px; height: 14px; flex-shrink: 0; }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-copyright { font-size: 12px; color: var(--color-text-tertiary); letter-spacing: 0.08em; }
+.footer-slogan {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.24em;
+  line-height: 1.8;
+  text-align: right;
+}
+
+/* Fade in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in.delay-1 { transition-delay: 0.1s; }
+.fade-in.delay-2 { transition-delay: 0.2s; }
+.fade-in.delay-3 { transition-delay: 0.3s; }
+.fade-in.delay-4 { transition-delay: 0.4s; }
+.fade-in.delay-5 { transition-delay: 0.5s; }
+
+/* RWD */
+@media (max-width: 1024px) {
+  .nav-menu { gap: 1.6rem; }
+  .nav-menu a { font-size: 13px; letter-spacing: 0.12em; }
+  .nav-brand-tag { display: none; }
+  .articles-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .footer-col:nth-child(4) { grid-column: span 3; }
+}
+
+@media (max-width: 768px) {
+  .nav-menu, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 0 1.4rem; }
+  .nav-brand-mark { font-size: 22px; }
+
+  .page-header { padding: 8.5rem 0 3.5rem; }
+  .page-header h1 { font-size: 1.6rem; letter-spacing: 0.08em; }
+  .page-header p { font-size: 14px; letter-spacing: 0.06em; }
+  .page-eyebrow { font-size: 11.5px; letter-spacing: 0.32em; gap: 0.7rem; }
+  .page-eyebrow::before, .page-eyebrow::after { width: 22px; }
+
+  .filter-bar { top: 60px; padding: 1.5rem 0 0.8rem; }
+  .filter-inner { padding: 0 1rem; gap: 0.4rem; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+  .filter-btn { padding: 0.5rem 1rem; font-size: 12px; letter-spacing: 0.12em; flex-shrink: 0; }
+
+  .articles-section { padding: 2.5rem 0 5rem; }
+  .articles-grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
+    padding: 0 1.4rem;
+  }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-brand { grid-column: span 2; }
+  .footer-col:nth-child(4) { grid-column: span 2; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .footer-slogan { text-align: left; font-size: 13px; }
+}
+
+@media (max-width: 420px) {
+  .nav-brand-mark { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-mark">智堯</span>
+      <span class="nav-brand-tag">
+        <span class="nav-brand-tag-main">八字命理 × 催眠療育</span>
+        <span class="nav-brand-tag-sub">理解生命結構，鬆動內在限制</span>
+      </span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="about.html">關於智堯</a></li>
+      <li><a href="bazi.html">八字命理</a></li>
+      <li><a href="hypno.html">催眠療育</a></li>
+      <li><a href="column.html" class="active">專欄文章</a></li>
+      <li><a href="community.html">初星群</a></li>
+    </ul>
+    <a href="booking.html" class="nav-cta">預約諮詢</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<aside class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="about.html">關於智堯</a></li>
+    <li><a href="bazi.html">八字命理</a></li>
+    <li><a href="hypno.html">催眠療育</a></li>
+    <li><a href="column.html">專欄文章</a></li>
+    <li><a href="community.html">初星群</a></li>
+    <li><a href="booking.html">怎麼預約</a></li>
+  </ul>
+  <a href="booking.html" class="nav-drawer-cta">預約諮詢</a>
+</aside>
+
+<!-- ============================================
+     PAGE HEADER
+     ============================================ -->
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="fade-in">
+      <span class="page-eyebrow">COLUMN  ·  專欄文章</span>
+    </div>
+    <h1 class="fade-in delay-1">從生活，回到內在</h1>
+    <p class="fade-in delay-2">每週更新，分享八字、催眠與身心成長的觀察與練習。<br>願這些文字，能在你需要的時候，輕輕地陪伴你。</p>
+  </div>
+</header>
+
+<!-- ============================================
+     FILTER
+     ============================================ -->
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active" data-filter="all">全部文章</button>
+    <button class="filter-btn" data-filter="bazi">八字思維</button>
+    <button class="filter-btn" data-filter="hypno">療癒心情</button>
+    <button class="filter-btn" data-filter="case">案例分享</button>
+    <button class="filter-btn" data-filter="practice">日常練習</button>
+    <button class="filter-btn" data-filter="growth">內在成長</button>
+  </div>
+</div>
+
+<!-- ============================================
+     ARTICLES (從 Google Sheets 動態載入)
+     ============================================ -->
+<section class="articles-section">
+
+  <!-- 載入中 -->
+  <div class="articles-status" id="articlesLoading">
+    <div class="loader-ring"></div>
+    <p>正在載入文章⋯⋯</p>
+  </div>
+
+  <!-- 沒有文章 -->
+  <div class="articles-status" id="articlesEmpty" hidden>
+    <h3>還沒有文章</h3>
+    <p>智堯老師的專欄正在準備中，歡迎稍後再來。</p>
+  </div>
+
+  <!-- 該分類沒有文章 -->
+  <div class="articles-status" id="articlesNoMatch" hidden>
+    <p>這個分類目前還沒有文章。</p>
+  </div>
+
+  <!-- 尚未設定 SHEET_ID -->
+  <div class="articles-status" id="articlesSetup" hidden>
+    <h3>專欄系統尚未連接資料來源</h3>
+    <p>請開啟 <code>sheets-config.js</code>，把 <code>SHEET_ID</code> 換成你的 Google Sheet ID，並確認 Sheet 已設定為「任何知道連結的人都可以查看」。</p>
+  </div>
+
+  <!-- 載入失敗 -->
+  <div class="articles-status" id="articlesError" hidden>
+    <h3>暫時無法載入文章</h3>
+    <p>請稍後再試。如果問題持續，可能是 Google Sheets 的分享權限有變動。</p>
+  </div>
+
+  <!-- 文章卡片容器 -->
+  <div class="articles-grid" id="articlesGrid" hidden></div>
+
+</section>
+
+<!-- 隱藏舊的靜態文章區塊（保留以下不會渲染） -->
+<div hidden>
+  <div class="articles-grid-old-static">
+
+    <!-- 文章 1 -->
+    <a href="article-template.html" class="article-card fade-in" data-category="bazi">
+      <div class="article-cover">
+        <span class="article-tag">八字思維</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#D8C29A"/><stop offset="100%" stop-color="#A8895C"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c1)"/>
+          <path d="M0,160 L60,130 L130,150 L210,110 L290,140 L360,115 L400,130 L400,250 L0,250 Z" fill="#7A5A38" opacity="0.4"/>
+          <path d="M0,200 L80,170 L170,190 L260,160 L340,180 L400,170 L400,250 L0,250 Z" fill="#5C4A36" opacity="0.5"/>
+          <circle cx="280" cy="80" r="32" fill="#FFE9C0" opacity="0.7"/>
+          <circle cx="280" cy="80" r="22" fill="#FFF1D5" opacity="0.9"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>如何知道自己的人生方向？從八字看天賦與人生題</h3>
+        <p class="article-excerpt">很多人來找我，問的不是吉凶禍福，而是：「我究竟適合做什麼？」八字其實能給你一個非常清楚的方向⋯⋯</p>
+        <div class="article-meta"><span>2024.04.18</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 2 -->
+    <a href="article-template.html" class="article-card fade-in delay-1" data-category="hypno">
+      <div class="article-cover">
+        <span class="article-tag">療癒心情</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E8EEDF"/><stop offset="100%" stop-color="#A8B89C"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c2)"/>
+          <rect x="60" y="40" width="280" height="180" fill="#F5EFE4" opacity="0.7" rx="4"/>
+          <rect x="60" y="40" width="280" height="180" fill="none" stroke="#5C4A36" stroke-width="2" rx="4"/>
+          <line x1="200" y1="40" x2="200" y2="220" stroke="#5C4A36" stroke-width="1.5"/>
+          <line x1="60" y1="130" x2="340" y2="130" stroke="#5C4A36" stroke-width="1.5"/>
+          <g opacity="0.6">
+            <path d="M90,150 Q100,110 130,90" stroke="#7A5A38" stroke-width="1.5" fill="none"/>
+            <ellipse cx="100" cy="120" rx="6" ry="14" fill="#7A8B6E" transform="rotate(-30 100 120)"/>
+            <ellipse cx="125" cy="100" rx="6" ry="14" fill="#7A8B6E" transform="rotate(20 125 100)"/>
+            <ellipse cx="115" cy="135" rx="6" ry="14" fill="#7A8B6E" transform="rotate(-50 115 135)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>焦慮來襲時，可以做的 3 件小事</h3>
+        <p class="article-excerpt">焦慮不是敵人，它只是內在發出的訊號。試試看這三個簡單的練習，讓自己重新回到當下⋯⋯</p>
+        <div class="article-meta"><span>2024.04.12</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 3 -->
+    <a href="article-template.html" class="article-card fade-in delay-2" data-category="case">
+      <div class="article-cover">
+        <span class="article-tag">案例分享</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F4DDD2"/><stop offset="100%" stop-color="#C29385"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c3)"/>
+          <rect x="0" y="170" width="400" height="80" fill="#A87560" opacity="0.4"/>
+          <ellipse cx="140" cy="170" rx="28" ry="6" fill="#5C4A36" opacity="0.3"/>
+          <path d="M115,160 Q115,120 120,120 L160,120 Q165,120 165,160 Q165,170 140,172 Q115,170 115,160Z" fill="#F5EFE4"/>
+          <ellipse cx="140" cy="120" rx="22" ry="3" fill="#3A2A14" opacity="0.5"/>
+          <path d="M165,130 Q180,128 180,140 Q180,152 165,150" stroke="#F5EFE4" stroke-width="3" fill="none"/>
+          <rect x="200" y="155" width="160" height="80" fill="#F5EFE4" rx="2"/>
+          <rect x="200" y="155" width="160" height="80" fill="none" stroke="#5C4A36" stroke-width="1" rx="2"/>
+          <line x1="220" y1="175" x2="340" y2="175" stroke="#A89B8C" stroke-width="0.8"/>
+          <line x1="220" y1="190" x2="320" y2="190" stroke="#A89B8C" stroke-width="0.8"/>
+          <line x1="220" y1="205" x2="335" y2="205" stroke="#A89B8C" stroke-width="0.8"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>一段關係的結束，是另一段關係的開始</h3>
+        <p class="article-excerpt">分手後的她說：「我不知道下一段感情會在哪。」我說：「會的，但更重要的是，先回到自己這一段⋯⋯」</p>
+        <div class="article-meta"><span>2024.04.05</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 4 -->
+    <a href="article-template.html" class="article-card fade-in delay-3" data-category="practice">
+      <div class="article-cover">
+        <span class="article-tag">日常練習</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F0E4CC"/><stop offset="100%" stop-color="#C9A77A"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c4)"/>
+          <!-- 蠟燭 -->
+          <ellipse cx="200" cy="50" rx="6" ry="14" fill="#FFD68A" opacity="0.9"/>
+          <ellipse cx="200" cy="48" rx="3" ry="8" fill="#FFF1D5"/>
+          <rect x="195" y="60" width="10" height="60" fill="#F5EFE4"/>
+          <ellipse cx="200" cy="120" rx="20" ry="4" fill="#5C4A36" opacity="0.4"/>
+          <path d="M180,120 L180,180 Q180,200 200,200 Q220,200 220,180 L220,120" fill="#D9C396" stroke="#5C4A36" stroke-width="1"/>
+          <ellipse cx="200" cy="120" rx="20" ry="4" fill="#A8895C"/>
+          <!-- 環繞光 -->
+          <circle cx="200" cy="50" r="40" fill="rgba(255,230,180,0.4)" filter="blur(8px)"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>每日五分鐘的內在儀式：點一根蠟燭就好</h3>
+        <p class="article-excerpt">真正的療癒，不是大張旗鼓的療程，而是每天五分鐘，給自己一個回到內在的小小儀式⋯⋯</p>
+        <div class="article-meta"><span>2024.03.28</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 5 -->
+    <a href="article-template.html" class="article-card fade-in" data-category="growth">
+      <div class="article-cover">
+        <span class="article-tag">內在成長</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E5EBDF"/><stop offset="100%" stop-color="#7E9479"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c5)"/>
+          <!-- 樹苗 -->
+          <path d="M200,220 L200,140" stroke="#5C4A36" stroke-width="2.5"/>
+          <ellipse cx="180" cy="160" rx="20" ry="8" fill="#7A8B6E" transform="rotate(-30 180 160)"/>
+          <ellipse cx="220" cy="150" rx="22" ry="9" fill="#7A8B6E" transform="rotate(25 220 150)"/>
+          <ellipse cx="190" cy="135" rx="18" ry="7" fill="#A0B093" transform="rotate(-15 190 135)"/>
+          <ellipse cx="215" cy="130" rx="16" ry="6" fill="#A0B093" transform="rotate(20 215 130)"/>
+          <!-- 土壤 -->
+          <ellipse cx="200" cy="220" rx="80" ry="10" fill="#5C4A36" opacity="0.5"/>
+          <!-- 光點 -->
+          <circle cx="120" cy="80" r="3" fill="#fff" opacity="0.8"/>
+          <circle cx="280" cy="60" r="2" fill="#fff" opacity="0.7"/>
+          <circle cx="320" cy="100" r="2.5" fill="#fff" opacity="0.6"/>
+          <circle cx="80" cy="150" r="2" fill="#fff" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>為什麼成長總是慢的？信任時間的智慧</h3>
+        <p class="article-excerpt">我們總是想要立刻改變，但內在的成長從來不是線性的。它像種子發芽，需要時間、土壤與耐心⋯⋯</p>
+        <div class="article-meta"><span>2024.03.21</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 6 -->
+    <a href="article-template.html" class="article-card fade-in delay-1" data-category="bazi">
+      <div class="article-cover">
+        <span class="article-tag">八字思維</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#EFE6D3"/><stop offset="100%" stop-color="#B8924A"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c6)"/>
+          <!-- 八卦圖 -->
+          <g transform="translate(200,125)">
+            <circle r="70" fill="rgba(255,255,255,0.3)" stroke="#5C4A36" stroke-width="1.5"/>
+            <circle r="50" fill="none" stroke="#5C4A36" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="0" y1="-70" x2="0" y2="70" stroke="#5C4A36" stroke-width="1"/>
+            <line x1="-70" y1="0" x2="70" y2="0" stroke="#5C4A36" stroke-width="1"/>
+            <line x1="-50" y1="-50" x2="50" y2="50" stroke="#5C4A36" stroke-width="0.8"/>
+            <line x1="50" y1="-50" x2="-50" y2="50" stroke="#5C4A36" stroke-width="0.8"/>
+            <circle r="6" fill="#5C4A36"/>
+            <circle r="3" fill="#FAF6F0"/>
+          </g>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>「日主」是什麼？認識你命盤裡的核心</h3>
+        <p class="article-excerpt">日主，是八字命盤裡代表「你」的那個字。它不是你的命運，而是你看待世界的方式⋯⋯</p>
+        <div class="article-meta"><span>2024.03.14</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 7 -->
+    <a href="article-template.html" class="article-card fade-in delay-2" data-category="hypno">
+      <div class="article-cover">
+        <span class="article-tag">療癒心情</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c7" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5EFE4"/><stop offset="100%" stop-color="#A8B89C"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c7)"/>
+          <!-- 水波紋 -->
+          <ellipse cx="200" cy="180" rx="180" ry="20" fill="rgba(126,148,121,0.2)"/>
+          <ellipse cx="200" cy="180" rx="140" ry="14" fill="rgba(126,148,121,0.3)"/>
+          <ellipse cx="200" cy="180" rx="100" ry="10" fill="rgba(126,148,121,0.4)"/>
+          <ellipse cx="200" cy="180" rx="60" ry="6" fill="rgba(126,148,121,0.5)"/>
+          <circle cx="200" cy="180" r="4" fill="#5C4A36"/>
+          <!-- 漣漪上的光 -->
+          <circle cx="200" cy="60" r="20" fill="rgba(255,240,200,0.6)" filter="blur(2px)"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>當情緒像潮水時，學會做岸邊的人</h3>
+        <p class="article-excerpt">我們總想壓抑情緒、忽略它、解決它，卻很少學會「陪它在一起」。情緒從來不需要被消滅，它需要的是被看見⋯⋯</p>
+        <div class="article-meta"><span>2024.03.07</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 8 -->
+    <a href="article-template.html" class="article-card fade-in delay-3" data-category="case">
+      <div class="article-cover">
+        <span class="article-tag">案例分享</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c8" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F4DDD2"/><stop offset="100%" stop-color="#A87560"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c8)"/>
+          <!-- 信件 -->
+          <rect x="100" y="80" width="200" height="120" fill="#F5EFE4" rx="2" stroke="#5C4A36" stroke-width="1"/>
+          <path d="M100,80 L200,150 L300,80" stroke="#5C4A36" stroke-width="1" fill="none"/>
+          <!-- 蠟封 -->
+          <circle cx="270" cy="170" r="14" fill="#A87560"/>
+          <circle cx="270" cy="170" r="14" fill="none" stroke="#5C4A36" stroke-width="0.8"/>
+          <text x="270" y="174" text-anchor="middle" fill="#F5EFE4" font-size="10" font-family="serif">智</text>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>那些不敢說出口的話，後來都怎麼了</h3>
+        <p class="article-excerpt">案主在催眠中看見了 12 歲的自己，那個不敢開口的孩子。她哭著說：「原來我不是不會說，是不被允許說⋯⋯」</p>
+        <div class="article-meta"><span>2024.02.29</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+    <!-- 文章 9 -->
+    <a href="article-template.html" class="article-card fade-in delay-4" data-category="practice">
+      <div class="article-cover">
+        <span class="article-tag">日常練習</span>
+        <svg viewBox="0 0 400 250" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="c9" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#E5EBDF"/><stop offset="100%" stop-color="#C9A77A"/></linearGradient></defs>
+          <rect width="400" height="250" fill="url(#c9)"/>
+          <!-- 茶杯 -->
+          <ellipse cx="200" cy="190" rx="50" ry="8" fill="#5C4A36" opacity="0.4"/>
+          <path d="M155,160 Q155,120 160,120 L240,120 Q245,120 245,160 Q245,180 200,182 Q155,180 155,160 Z" fill="#F5EFE4" stroke="#5C4A36" stroke-width="1"/>
+          <ellipse cx="200" cy="120" rx="42" ry="5" fill="#A87560"/>
+          <path d="M245,135 Q265,133 265,150 Q265,165 245,162" stroke="#5C4A36" stroke-width="2" fill="none"/>
+          <!-- 蒸氣 -->
+          <path d="M180,90 Q175,75 185,60 Q195,45 185,30" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.7"/>
+          <path d="M210,100 Q220,85 215,70 Q210,55 220,40" stroke="#fff" stroke-width="1.5" fill="none" opacity="0.7"/>
+        </svg>
+      </div>
+      <div class="article-body">
+        <h3>用一杯茶的時間，與自己對話</h3>
+        <p class="article-excerpt">每天泡一杯茶的時候，不要看手機，不要做其他事，只是陪自己坐著。這是最簡單，也最深刻的練習⋯⋯</p>
+        <div class="article-meta"><span>2024.02.22</span><span class="article-meta-arrow">→</span></div>
+      </div>
+    </a>
+
+  </div>
+</div>
+<!-- /隱藏舊靜態區塊結束 -->
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-mark">智堯</div>
+        <div class="footer-tag">八字命理 × 催眠療育</div>
+        <div class="footer-tag-sub">理解生命結構，鬆動內在限制，<br>回到屬於你的方向與力量。</div>
+      </div>
+      <div class="footer-col">
+        <h5>快速連結</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="about.html">關於智堯</a></li>
+          <li><a href="index.html#services">服務項目</a></li>
+          <li><a href="column.html">專欄文章</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>服務項目</h5>
+        <ul>
+          <li><a href="bazi.html">八字命理諮詢</a></li>
+          <li><a href="hypno.html">催眠療育服務</a></li>
+          <li><a href="community.html">初星群社群</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>聯絡方式</h5>
+        <ul>
+          <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21,11 C21,6 17,3 12,3 C7,3 3,6 3,11 C3,15.5 7,19 12,19 C12,19 11,21 11.5,21.5 C12,22 16,18.5 17,18 C19.5,16.5 21,14 21,11 Z"/></svg>LINE 官方帳號</a></li>
+          <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg>Instagram</a></li>
+          <li><a href="mailto:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3,7 L12,13 L21,7"/></svg>Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2024 智堯命理療癒工作室　All rights reserved.</div>
+      <div class="footer-slogan">照亮內在，<br>回到自己。</div>
+    </div>
+  </div>
+</footer>
+
+<script src="sheets-config.js"></script>
+<script src="sheets-loader.js"></script>
+<script>
+  // ===== Nav scroll =====
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // ===== Hamburger =====
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('navDrawer');
+  var overlay = document.getElementById('navOverlay');
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+  hamburger.addEventListener('click', function() {
+    var isOpen = drawer.classList.contains('open');
+    if (isOpen) closeDrawer();
+    else {
+      hamburger.classList.add('open');
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+  });
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeDrawer); });
+
+  // ===== Generic fade-in observer (for header) =====
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+
+  // ============================================
+  // Dynamic article loading from Google Sheets
+  // ============================================
+  (function() {
+    var grid = document.getElementById('articlesGrid');
+    var loading = document.getElementById('articlesLoading');
+    var empty = document.getElementById('articlesEmpty');
+    var noMatch = document.getElementById('articlesNoMatch');
+    var setup = document.getElementById('articlesSetup');
+    var errorBox = document.getElementById('articlesError');
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var allArticles = [];
+    var currentFilter = 'all';
+
+    // 中文分類 → 英文 filter key
+    var CATEGORY_MAP = {
+      '八字思維': 'bazi',
+      '療癒心情': 'hypno',
+      '療育心情': 'hypno',
+      '案例分享': 'case',
+      '日常練習': 'practice',
+      '內在成長': 'growth'
+    };
+
+    // 沒有封面圖時的漸層底色
+    var CATEGORY_COLORS = {
+      bazi:     ['#EFE6D3', '#B8924A'],
+      hypno:    ['#E8EEDF', '#A8B89C'],
+      case:     ['#F4DDD2', '#A87560'],
+      practice: ['#F0E4CC', '#C9A77A'],
+      growth:   ['#E5EBDF', '#7E9479']
+    };
+
+    function getCategoryKey(chineseCategory) {
+      return CATEGORY_MAP[chineseCategory] || 'bazi';
+    }
+
+    function escapeHtml(s) {
+      var d = document.createElement('div');
+      d.textContent = String(s == null ? '' : s);
+      return d.innerHTML;
+    }
+
+    function escapeAttr(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function renderCard(article) {
+      var key = getCategoryKey(article.category);
+      var colors = CATEGORY_COLORS[key] || CATEGORY_COLORS.bazi;
+      var coverHtml = article.cover
+        ? '<img src="' + escapeAttr(article.cover) + '" alt="' + escapeAttr(article.title) + '" loading="lazy" onerror="this.style.display=\'none\'">'
+        : '<div class="article-cover-fallback" style="background:linear-gradient(135deg,' + colors[0] + ' 0%,' + colors[1] + ' 100%)"></div>';
+
+      var dateStr = (article.date || '').replace(/-/g, '.');
+
+      return '<a href="article-template.html?id=' + encodeURIComponent(article.id) + '" class="article-card fade-in" data-category="' + key + '">' +
+        '<div class="article-cover">' +
+          '<span class="article-tag">' + escapeHtml(article.category) + '</span>' +
+          coverHtml +
+        '</div>' +
+        '<div class="article-body">' +
+          '<h3>' + escapeHtml(article.title) + '</h3>' +
+          '<p class="article-excerpt">' + escapeHtml(article.excerpt) + '</p>' +
+          '<div class="article-meta"><span>' + escapeHtml(dateStr) + '</span><span class="article-meta-arrow">→</span></div>' +
+        '</div>' +
+      '</a>';
+    }
+
+    function showOnly(el) {
+      [grid, loading, empty, noMatch, setup, errorBox].forEach(function(node) {
+        if (!node) return;
+        if (node === el) node.removeAttribute('hidden');
+        else node.setAttribute('hidden', '');
+      });
+    }
+
+    function renderArticles(articles) {
+      if (!articles.length) {
+        showOnly(currentFilter === 'all' ? empty : noMatch);
+        return;
+      }
+      grid.innerHTML = articles.map(renderCard).join('');
+      showOnly(grid);
+
+      // 對新插入的卡片啟用淡入動畫
+      grid.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+    }
+
+    function applyFilter() {
+      var filtered = currentFilter === 'all'
+        ? allArticles
+        : allArticles.filter(function(a) {
+            return getCategoryKey(a.category) === currentFilter;
+          });
+      renderArticles(filtered);
+    }
+
+    function init() {
+      var cfg = window.SHEETS_CONFIG;
+      // SHEET_ID 還是 placeholder → 顯示設定提示
+      if (!cfg || !cfg.SHEET_ID || /XXXXX/.test(cfg.SHEET_ID)) {
+        showOnly(setup);
+        return;
+      }
+
+      window.fetchArticles().then(function(articles) {
+        allArticles = articles || [];
+        applyFilter();
+      }).catch(function() {
+        showOnly(errorBox);
+      });
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          filterBtns.forEach(function(b) { b.classList.remove('active'); });
+          btn.classList.add('active');
+          currentFilter = btn.dataset.filter;
+          applyFilter();
+        });
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
+</body>
+</html>

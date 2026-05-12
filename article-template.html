@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--
+  ============================================
+  文章模板使用說明：
+  1. 複製這個檔案，改名為 article-001.html、article-002.html 等
+  2. 修改 <title> 與下方所有「【請替換】」標記的位置
+  3. 文章內容寫在 <article class="article-content"> 區塊內
+  ============================================
+-->
+<title>如何知道自己的人生方向？從八字看天賦與人生題｜智堯專欄</title>
+<meta name="description" content="很多人來找我，問的不是吉凶禍福，而是『我究竟適合做什麼？』八字其實能給你一個非常清楚的方向。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --color-gold: #B8924A;
+  --color-gold-deep: #9C7838;
+  --color-gold-light: rgba(184, 146, 74, 0.15);
+  --color-gold-border: rgba(184, 146, 74, 0.28);
+  --color-brown-deep: #3A2A14;
+  --color-brown-medium: #5C4A36;
+  --color-brown-soft: #8B7B6B;
+  --color-text-primary: #3A2A14;
+  --color-text-secondary: #6B5B47;
+  --color-text-tertiary: #A89B8C;
+  --color-bg-primary: #FAF6F0;
+  --color-bg-secondary: #F5EFE4;
+  --color-bg-tertiary: #EFE6D3;
+  --color-bg-card: #FFFFFF;
+  --color-border: rgba(90, 70, 50, 0.08);
+  --color-border-soft: rgba(90, 70, 50, 0.05);
+  --color-border-hover: rgba(184, 146, 74, 0.32);
+  --font-serif: 'Noto Serif TC', serif;
+  --font-sans: 'Noto Sans TC', sans-serif;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-bg-primary);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+img, svg { display: block; max-width: 100%; }
+button, a, label { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--color-gold); outline-offset: 3px; border-radius: 2px; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  color: var(--color-brown-deep);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+}
+
+/* ============================================
+   NAV (與首頁一致)
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.4rem 0;
+  background: rgba(250, 246, 240, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-soft);
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+.nav.scrolled {
+  padding: 1rem 0;
+  background: rgba(250, 246, 240, 0.94);
+  box-shadow: 0 1px 24px rgba(90, 70, 50, 0.04);
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.nav-brand { display: flex; align-items: center; gap: 1rem; }
+.nav-brand-mark {
+  font-family: var(--font-serif);
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.12em;
+}
+.nav-brand-tag {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--color-gold-border);
+  padding-left: 1rem;
+  line-height: 1.5;
+}
+.nav-brand-tag-main {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.18em;
+}
+.nav-brand-tag-sub {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+}
+.nav-menu { display: flex; align-items: center; gap: 2.4rem; list-style: none; }
+.nav-menu a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.16em;
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color 0.3s ease;
+}
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: all 0.4s ease;
+  transform: translateX(-50%);
+}
+.nav-menu a:hover, .nav-menu a.active { color: var(--color-brown-deep); }
+.nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(184, 146, 74, 0.22);
+  transition: all 0.4s ease;
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(184, 146, 74, 0.32); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; z-index: 110; }
+.nav-hamburger span { display: block; width: 22px; height: 1.5px; background: var(--color-brown-deep); border-radius: 2px; }
+.nav-hamburger.open span { transform: none; opacity: 1; }
+.nav-drawer {
+  position: fixed; top: 0; right: -100%;
+  width: 80%; max-width: 320px; height: 100vh;
+  background: var(--color-bg-primary);
+  padding: 5rem 2rem 2rem;
+  z-index: 105;
+  transition: right 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  border-left: 1px solid var(--color-border);
+  box-shadow: -10px 0 40px rgba(90, 70, 50, 0.08);
+}
+.nav-drawer.open { right: 0; }
+.nav-drawer ul { list-style: none; }
+.nav-drawer li { border-bottom: 1px solid var(--color-border); }
+.nav-drawer a {
+  display: block;
+  padding: 1.2rem 0;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.18em;
+}
+.nav-drawer-cta {
+  display: block;
+  margin-top: 2rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  color: #fff !important;
+  text-align: center;
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+.nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(58, 42, 20, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 102;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+.nav-overlay.open { opacity: 1; pointer-events: all; }
+
+/* ============================================
+   ARTICLE HERO (封面)
+   ============================================ */
+.article-hero {
+  position: relative;
+  padding-top: 6.5rem;
+  background: var(--color-bg-primary);
+}
+.article-hero-meta {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+  text-align: center;
+}
+.article-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.16em;
+  margin-bottom: 2rem;
+}
+.article-breadcrumb a {
+  transition: color 0.3s ease;
+}
+.article-breadcrumb a:hover { color: var(--color-gold-deep); }
+.article-breadcrumb-sep { color: var(--color-text-tertiary); }
+.article-category {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: var(--color-gold-light);
+  color: var(--color-gold-deep);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.6rem;
+}
+.article-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 500;
+  line-height: 1.55;
+  letter-spacing: 0.06em;
+  color: var(--color-brown-deep);
+  margin-bottom: 1.6rem;
+  text-wrap: balance;
+}
+.article-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+  flex-wrap: wrap;
+}
+.article-meta-author {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.article-meta-author-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F0E4CC, #C9A77A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.article-meta-divider {
+  width: 1px;
+  height: 12px;
+  background: var(--color-border);
+}
+
+/* 封面圖 */
+.article-cover-img {
+  max-width: 920px;
+  margin: 2rem auto 0;
+  padding: 0 2rem;
+}
+.article-cover-img-inner {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 48px rgba(90, 70, 50, 0.08);
+}
+.article-cover-img-inner svg { width: 100%; height: 100%; }
+
+/* ============================================
+   ARTICLE CONTENT
+   ============================================ */
+.article-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+.article-content p {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  color: var(--color-brown-medium);
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+  margin-bottom: 1.6rem;
+}
+.article-content p strong {
+  color: var(--color-brown-deep);
+  font-weight: 600;
+}
+.article-content p em {
+  color: var(--color-gold-deep);
+  font-style: normal;
+  background: linear-gradient(transparent 60%, rgba(184, 146, 74, 0.18) 60%);
+  padding: 0 0.1em;
+}
+.article-content h2 {
+  font-size: 1.55rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  margin: 3.5rem 0 1.5rem;
+  position: relative;
+  padding-left: 1.4rem;
+}
+.article-content h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 70%;
+  background: linear-gradient(180deg, var(--color-gold), transparent);
+  border-radius: 2px;
+}
+.article-content h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin: 2.5rem 0 1.2rem;
+  color: var(--color-brown-deep);
+}
+.article-content blockquote {
+  margin: 2.5rem 0;
+  padding: 1.8rem 2rem;
+  background: var(--color-bg-secondary);
+  border-left: 3px solid var(--color-gold);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  font-family: var(--font-serif);
+  font-size: 16px;
+  color: var(--color-brown-deep);
+  line-height: 1.95;
+  letter-spacing: 0.06em;
+}
+.article-content blockquote p:last-child { margin-bottom: 0; }
+.article-content ul, .article-content ol {
+  margin: 1.5rem 0 1.6rem 1.5rem;
+  padding-left: 0.5rem;
+}
+.article-content li {
+  font-family: var(--font-serif);
+  font-size: 16.5px;
+  color: var(--color-brown-medium);
+  line-height: 2;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.7rem;
+}
+.article-content ul li::marker { color: var(--color-gold); }
+.article-content ol li::marker { color: var(--color-gold-deep); font-weight: 500; }
+
+.article-content img,
+.article-content .article-figure {
+  margin: 2.5rem 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(90, 70, 50, 0.06);
+}
+.article-content figure {
+  margin: 2.5rem 0;
+}
+.article-content figure svg {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+.article-content figcaption {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-tertiary);
+  margin-top: 0.8rem;
+  letter-spacing: 0.06em;
+}
+
+.article-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 4rem 0;
+  color: var(--color-gold);
+}
+.article-divider::before, .article-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, var(--color-gold-border), transparent);
+}
+.article-divider span {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  letter-spacing: 0.4em;
+}
+
+/* ============================================
+   ARTICLE FOOTER (作者卡 + CTA)
+   ============================================ */
+.article-bottom {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.author-card {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+  padding: 2rem;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  margin-bottom: 4rem;
+}
+.author-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #F0E4CC, #C9A77A);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-size: 26px;
+  color: #fff;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+.author-info h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.1em;
+}
+.author-info p {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+}
+
+.article-cta {
+  text-align: center;
+  padding: 4rem 2.5rem;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(244, 220, 168, 0.4) 0%, transparent 60%),
+    linear-gradient(160deg, #FAEFD3 0%, #F0E4CC 100%);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-gold-border);
+  margin-bottom: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.article-cta-eyebrow {
+  font-family: var(--font-serif);
+  font-size: 12.5px;
+  letter-spacing: 0.32em;
+  color: var(--color-gold-deep);
+  margin-bottom: 1.2rem;
+  display: inline-block;
+}
+.article-cta h3 {
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.article-cta p {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.06em;
+  line-height: 1.95;
+  margin-bottom: 2rem;
+  max-width: 460px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.article-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.95rem 2rem;
+  background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(184, 146, 74, 0.22);
+  transition: all 0.4s ease;
+}
+.article-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(184, 146, 74, 0.34);
+}
+
+/* ============================================
+   RELATED ARTICLES
+   ============================================ */
+.related {
+  background: var(--color-bg-secondary);
+  padding: 5rem 0;
+}
+.related-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.related-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.related-head .eyebrow {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.36em;
+  color: var(--color-gold-deep);
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+.related-head h3 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+}
+.related-card {
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+@media (hover: hover) {
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px rgba(90, 70, 50, 0.06);
+    border-color: var(--color-gold-border);
+  }
+}
+.related-cover {
+  aspect-ratio: 16 / 10;
+  position: relative;
+}
+.related-cover svg { width: 100%; height: 100%; display: block; }
+.related-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  padding: 0.3rem 0.8rem;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--color-brown-deep);
+}
+.related-body { padding: 1.4rem 1.4rem 1.2rem; flex: 1; display: flex; flex-direction: column; }
+.related-card h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  flex: 1;
+}
+.related-meta {
+  font-size: 12px;
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--color-bg-tertiary);
+  padding: 4.5rem 0 2rem;
+}
+.footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.footer-brand-mark {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--color-brown-deep);
+  margin-bottom: 1rem;
+}
+.footer-tag {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.18em;
+  line-height: 1.8;
+  margin-bottom: 0.4rem;
+}
+.footer-tag-sub {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  line-height: 1.8;
+}
+.footer-col h5 {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.24em;
+  margin-bottom: 1.2rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-col a {
+  font-size: 13.5px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.06em;
+  transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.footer-col a:hover { color: var(--color-gold-deep); }
+.footer-col a svg { width: 14px; height: 14px; flex-shrink: 0; }
+.footer-bottom {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.footer-copyright { font-size: 12px; color: var(--color-text-tertiary); letter-spacing: 0.08em; }
+.footer-slogan {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  color: var(--color-brown-deep);
+  letter-spacing: 0.24em;
+  line-height: 1.8;
+  text-align: right;
+}
+
+/* Fade in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1), transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+/* Article subtitle (optional) */
+.article-subtitle {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.06em;
+  line-height: 1.9;
+  margin-top: -0.6rem;
+  margin-bottom: 1.6rem;
+  max-width: 720px;
+}
+
+/* Cover image (img / svg fallback) */
+.article-cover-img-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.article-cover-fallback {
+  width: 100%;
+  height: 100%;
+}
+
+/* hidden 屬性必須能蓋過 display:flex */
+[hidden] { display: none !important; }
+
+/* Loading / empty / setup / 404 states */
+.articles-status {
+  text-align: center;
+  padding: 7rem 2rem;
+  color: var(--color-text-secondary);
+  font-family: var(--font-serif);
+  letter-spacing: 0.08em;
+  line-height: 2;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.articles-status .loader-ring {
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-gold-border);
+  border-top-color: var(--color-gold);
+  border-radius: 50%;
+  margin-bottom: 1.4rem;
+  animation: loader-spin 0.9s linear infinite;
+}
+@keyframes loader-spin { to { transform: rotate(360deg); } }
+.articles-status h3 {
+  font-size: 1.25rem;
+  color: var(--color-brown-deep);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.12em;
+}
+.articles-status p {
+  font-size: 14px;
+  max-width: 460px;
+}
+.articles-status code {
+  background: var(--color-gold-light);
+  color: var(--color-gold-deep);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-family: 'SF Mono', Consolas, monospace;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+
+/* RWD */
+@media (max-width: 1024px) {
+  .nav-menu { gap: 1.6rem; }
+  .nav-menu a { font-size: 13px; letter-spacing: 0.12em; }
+  .nav-brand-tag { display: none; }
+  .related-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .footer-col:nth-child(4) { grid-column: span 3; }
+}
+
+@media (max-width: 768px) {
+  .nav-menu, .nav-cta { display: none; }
+  .nav-hamburger { display: flex; }
+  .nav-inner { padding: 0 1.4rem; }
+  .nav-brand-mark { font-size: 22px; }
+
+  .article-hero-meta { padding: 2rem 1.4rem 1.5rem; }
+  .article-title { font-size: 1.5rem; line-height: 1.65; letter-spacing: 0.04em; }
+  .article-breadcrumb { font-size: 11.5px; letter-spacing: 0.12em; }
+  .article-meta-row { font-size: 12px; gap: 1rem; }
+
+  .article-cover-img { padding: 0 1.4rem; }
+
+  .article-content { padding: 3rem 1.4rem; }
+  .article-content p { font-size: 15.5px; line-height: 2; letter-spacing: 0.04em; }
+  .article-content h2 { font-size: 1.3rem; margin: 2.5rem 0 1.2rem; letter-spacing: 0.06em; }
+  .article-content h3 { font-size: 1.1rem; }
+  .article-content blockquote { padding: 1.4rem 1.4rem; font-size: 14.5px; }
+  .article-content li { font-size: 15.5px; }
+
+  .article-bottom { padding: 0 1.4rem; }
+  .author-card { flex-direction: column; text-align: center; padding: 1.6rem; gap: 1rem; }
+
+  .article-cta { padding: 3rem 1.6rem; }
+  .article-cta h3 { font-size: 1.25rem; letter-spacing: 0.06em; }
+  .article-cta p { font-size: 14px; }
+
+  .related { padding: 3.5rem 0; }
+  .related-head h3 { font-size: 1.35rem; }
+  .related-grid { grid-template-columns: 1fr; gap: 1.4rem; padding: 0 1.4rem; }
+  .related-inner { padding: 0; }
+  .related-head { padding: 0 1.4rem; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-brand { grid-column: span 2; }
+  .footer-col:nth-child(4) { grid-column: span 2; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .footer-slogan { text-align: left; font-size: 13px; }
+}
+
+@media (max-width: 420px) {
+  .article-title { font-size: 1.35rem; }
+  .nav-brand-mark { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <span class="nav-brand-mark">智堯</span>
+      <span class="nav-brand-tag">
+        <span class="nav-brand-tag-main">八字命理 × 催眠療育</span>
+        <span class="nav-brand-tag-sub">理解生命結構，鬆動內在限制</span>
+      </span>
+    </a>
+    <ul class="nav-menu">
+      <li><a href="index.html">首頁</a></li>
+      <li><a href="about.html">關於智堯</a></li>
+      <li><a href="bazi.html">八字命理</a></li>
+      <li><a href="hypno.html">催眠療育</a></li>
+      <li><a href="column.html" class="active">專欄文章</a></li>
+      <li><a href="community.html">初星群</a></li>
+    </ul>
+    <a href="booking.html" class="nav-cta">預約諮詢</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="選單">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-overlay" id="navOverlay"></div>
+<aside class="nav-drawer" id="navDrawer" aria-hidden="true">
+  <ul>
+    <li><a href="index.html">首頁</a></li>
+    <li><a href="about.html">關於智堯</a></li>
+    <li><a href="bazi.html">八字命理</a></li>
+    <li><a href="hypno.html">催眠療育</a></li>
+    <li><a href="column.html">專欄文章</a></li>
+    <li><a href="community.html">初星群</a></li>
+    <li><a href="booking.html">怎麼預約</a></li>
+  </ul>
+  <a href="booking.html" class="nav-drawer-cta">預約諮詢</a>
+</aside>
+
+<!-- ============================================
+     ARTICLE HERO（從 Sheets 動態載入）
+     ============================================ -->
+
+<!-- 載入狀態（蓋滿整個 main） -->
+<div class="articles-status" id="articleLoading">
+  <div class="loader-ring"></div>
+  <p>正在載入文章⋯⋯</p>
+</div>
+
+<!-- 找不到文章 -->
+<div class="articles-status" id="articleNotFound" hidden>
+  <h3>找不到這篇文章</h3>
+  <p>它可能已經被移除，或網址不正確。</p>
+  <p style="margin-top:1.6rem;"><a href="column.html" style="color:var(--color-gold-deep);text-decoration:underline;">回到專欄列表</a></p>
+</div>
+
+<!-- 尚未設定 SHEET_ID -->
+<div class="articles-status" id="articleSetup" hidden>
+  <h3>專欄系統尚未連接資料來源</h3>
+  <p>請開啟 <code>sheets-config.js</code>，把 <code>SHEET_ID</code> 換成你的 Google Sheet ID。</p>
+</div>
+
+<!-- 載入失敗 -->
+<div class="articles-status" id="articleError" hidden>
+  <h3>暫時無法載入文章</h3>
+  <p>請稍後再試。</p>
+</div>
+
+<!-- 文章主體（先隱藏，資料載入後再顯示） -->
+<div id="articleMain" hidden>
+
+<section class="article-hero">
+  <div class="article-hero-meta">
+    <div class="article-breadcrumb fade-in">
+      <a href="index.html">首頁</a>
+      <span class="article-breadcrumb-sep">/</span>
+      <a href="column.html">專欄文章</a>
+      <span class="article-breadcrumb-sep">/</span>
+      <span id="articleBreadcrumbCat"></span>
+    </div>
+    <div class="article-category fade-in" id="articleCategory"></div>
+    <h1 class="article-title fade-in" id="articleTitle"></h1>
+    <p class="article-subtitle fade-in" id="articleSubtitle" hidden></p>
+    <div class="article-meta-row fade-in">
+      <div class="article-meta-author">
+        <div class="article-meta-author-avatar">智</div>
+        <span>智堯</span>
+      </div>
+      <div class="article-meta-divider"></div>
+      <span id="articleDate"></span>
+      <div class="article-meta-divider"></div>
+      <span id="articleReadTime"></span>
+    </div>
+  </div>
+
+  <!-- 封面圖（從 Sheets 載入） -->
+  <div class="article-cover-img fade-in">
+    <div class="article-cover-img-inner" id="articleCover"></div>
+  </div>
+</section>
+
+<!-- ============================================
+     ARTICLE CONTENT（Markdown 從 Sheets 渲染）
+     ============================================ -->
+<article class="article-content" id="articleContent"></article>
+
+<!-- ============================================
+     AUTHOR CARD + CTA
+     ============================================ -->
+<div class="article-bottom">
+
+  <div class="author-card fade-in">
+    <div class="author-avatar">智</div>
+    <div class="author-info">
+      <h4>智堯　ZHIYAO</h4>
+      <p>八字命理師、美國 NGH 認證催眠師。<br>
+      陪你看見生命的結構，回到內在的力量。</p>
+    </div>
+  </div>
+
+  <div class="article-cta fade-in">
+    <span class="article-cta-eyebrow">START  ·  開始你的探索</span>
+    <h3>想更深入了解自己的命盤？</h3>
+    <p>透過一對一八字諮詢，我會陪你看見人生的結構，<br>並一起釐清你正在面對的選擇。</p>
+    <a href="booking.html" class="article-cta-btn">預約諮詢 →</a>
+  </div>
+
+</div>
+
+<!-- ============================================
+     RELATED ARTICLES（從 Sheets 動態載入）
+     ============================================ -->
+<section class="related" id="relatedSection" hidden>
+  <div class="related-inner">
+    <div class="related-head">
+      <span class="eyebrow">RELATED  ·  延伸閱讀</span>
+      <h3>你可能也會想看</h3>
+    </div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+</div>
+<!-- /articleMain -->
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-mark">智堯</div>
+        <div class="footer-tag">八字命理 × 催眠療育</div>
+        <div class="footer-tag-sub">理解生命結構，鬆動內在限制，<br>回到屬於你的方向與力量。</div>
+      </div>
+      <div class="footer-col">
+        <h5>快速連結</h5>
+        <ul>
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="about.html">關於智堯</a></li>
+          <li><a href="bazi.html">八字命理</a></li>
+          <li><a href="hypno.html">催眠療育</a></li>
+          <li><a href="column.html">專欄文章</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>服務項目</h5>
+        <ul>
+          <li><a href="bazi.html">八字命理諮詢</a></li>
+          <li><a href="hypno.html">催眠療育服務</a></li>
+          <li><a href="community.html">初星群社群</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>聯絡方式</h5>
+        <ul>
+          <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21,11 C21,6 17,3 12,3 C7,3 3,6 3,11 C3,15.5 7,19 12,19 C12,19 11,21 11.5,21.5 C12,22 16,18.5 17,18 C19.5,16.5 21,14 21,11 Z"/></svg>LINE 官方帳號</a></li>
+          <li><a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg>Instagram</a></li>
+          <li><a href="mailto:"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3,7 L12,13 L21,7"/></svg>Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2024 智堯命理療癒工作室　All rights reserved.</div>
+      <div class="footer-slogan">照亮內在，<br>回到自己。</div>
+    </div>
+  </div>
+</footer>
+
+<script src="sheets-config.js"></script>
+<script src="sheets-loader.js"></script>
+<script>
+  // ===== Nav scroll =====
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // ===== Hamburger =====
+  var hamburger = document.getElementById('hamburger');
+  var drawer = document.getElementById('navDrawer');
+  var overlay = document.getElementById('navOverlay');
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+  hamburger.addEventListener('click', function() {
+    var isOpen = drawer.classList.contains('open');
+    if (isOpen) closeDrawer();
+    else {
+      hamburger.classList.add('open');
+      drawer.classList.add('open');
+      overlay.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+  });
+  overlay.addEventListener('click', closeDrawer);
+  drawer.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeDrawer); });
+
+  // ===== Generic fade-in observer =====
+  var fadeObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  function observeFades(root) {
+    (root || document).querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
+  }
+
+  // ============================================
+  // Article reader — fetch from Sheets by ?id=XXX
+  // ============================================
+  (function() {
+    var loading = document.getElementById('articleLoading');
+    var notFound = document.getElementById('articleNotFound');
+    var setupNeeded = document.getElementById('articleSetup');
+    var errorBox = document.getElementById('articleError');
+    var main = document.getElementById('articleMain');
+
+    var CATEGORY_COLORS = {
+      bazi:     ['#EFE6D3', '#B8924A'],
+      hypno:    ['#E8EEDF', '#A8B89C'],
+      case:     ['#F4DDD2', '#A87560'],
+      practice: ['#F0E4CC', '#C9A77A'],
+      growth:   ['#E5EBDF', '#7E9479']
+    };
+    var CATEGORY_MAP = {
+      '八字思維': 'bazi',
+      '療癒心情': 'hypno',
+      '療育心情': 'hypno',
+      '案例分享': 'case',
+      '日常練習': 'practice',
+      '內在成長': 'growth'
+    };
+    function getCategoryKey(c) { return CATEGORY_MAP[c] || 'bazi'; }
+
+    function escapeHtml(s) {
+      var d = document.createElement('div');
+      d.textContent = String(s == null ? '' : s);
+      return d.innerHTML;
+    }
+    function escapeAttr(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function showOnly(el) {
+      [loading, notFound, setupNeeded, errorBox, main].forEach(function(node) {
+        if (!node) return;
+        if (node === el) node.removeAttribute('hidden');
+        else node.setAttribute('hidden', '');
+      });
+    }
+
+    function getQueryId() {
+      var m = window.location.search.match(/[?&]id=([^&]+)/);
+      return m ? decodeURIComponent(m[1]) : null;
+    }
+
+    function estimateReadTime(content) {
+      // 中文約每分鐘 350 字
+      var chars = (content || '').replace(/\s/g, '').length;
+      var min = Math.max(1, Math.round(chars / 350));
+      return '閱讀時間 ' + min + ' 分鐘';
+    }
+
+    function formatDate(d) {
+      return (d || '').replace(/-/g, '.');
+    }
+
+    function renderCover(article) {
+      var cover = document.getElementById('articleCover');
+      if (article.cover) {
+        cover.innerHTML = '<img src="' + escapeAttr(article.cover) + '" alt="' + escapeAttr(article.title) + '" onerror="this.parentNode.innerHTML=\'\'">';
+      } else {
+        var key = getCategoryKey(article.category);
+        var colors = CATEGORY_COLORS[key] || CATEGORY_COLORS.bazi;
+        cover.innerHTML = '<div class="article-cover-fallback" style="background:linear-gradient(135deg,' + colors[0] + ' 0%,' + colors[1] + ' 100%)"></div>';
+      }
+    }
+
+    function renderArticle(article) {
+      // 麵包屑分類
+      document.getElementById('articleBreadcrumbCat').textContent = article.category || '';
+      // 分類徽章
+      document.getElementById('articleCategory').textContent = article.category || '';
+      // 標題
+      document.getElementById('articleTitle').textContent = article.title || '';
+      // 副標
+      var subEl = document.getElementById('articleSubtitle');
+      if (article.subtitle) {
+        subEl.textContent = article.subtitle;
+        subEl.removeAttribute('hidden');
+      }
+      // 日期
+      document.getElementById('articleDate').textContent = formatDate(article.date);
+      // 閱讀時間
+      document.getElementById('articleReadTime').textContent = estimateReadTime(article.content);
+      // 封面
+      renderCover(article);
+      // 內文 (Markdown)
+      document.getElementById('articleContent').innerHTML = window.renderMarkdown(article.content || '');
+      // 頁面標題
+      document.title = article.title + '｜智堯專欄';
+    }
+
+    function renderRelated(allArticles, currentId) {
+      var others = allArticles.filter(function(a) { return a.id !== currentId; });
+      if (!others.length) return;
+
+      // 取最多 3 篇
+      var picks = others.slice(0, 3);
+      var grid = document.getElementById('relatedGrid');
+      grid.innerHTML = picks.map(function(a) {
+        var key = getCategoryKey(a.category);
+        var colors = CATEGORY_COLORS[key] || CATEGORY_COLORS.bazi;
+        var coverHtml = a.cover
+          ? '<img src="' + escapeAttr(a.cover) + '" alt="' + escapeAttr(a.title) + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" onerror="this.style.display=\'none\'">'
+          : '<div class="article-cover-fallback" style="background:linear-gradient(135deg,' + colors[0] + ' 0%,' + colors[1] + ' 100%)"></div>';
+        return '<a href="article-template.html?id=' + encodeURIComponent(a.id) + '" class="related-card">' +
+          '<div class="related-cover">' +
+            '<span class="related-tag">' + escapeHtml(a.category) + '</span>' +
+            coverHtml +
+          '</div>' +
+          '<div class="related-body">' +
+            '<h4>' + escapeHtml(a.title) + '</h4>' +
+            '<div class="related-meta">' + escapeHtml(formatDate(a.date)) + '</div>' +
+          '</div>' +
+        '</a>';
+      }).join('');
+      document.getElementById('relatedSection').removeAttribute('hidden');
+    }
+
+    function init() {
+      var cfg = window.SHEETS_CONFIG;
+      if (!cfg || !cfg.SHEET_ID || /XXXXX/.test(cfg.SHEET_ID)) {
+        showOnly(setupNeeded);
+        return;
+      }
+
+      var id = getQueryId();
+      if (!id) {
+        showOnly(notFound);
+        return;
+      }
+
+      window.fetchArticles().then(function(articles) {
+        var article = articles.find(function(a) { return a.id === id; });
+        if (!article) {
+          showOnly(notFound);
+          return;
+        }
+        renderArticle(article);
+        renderRelated(articles, id);
+        showOnly(main);
+        observeFades(main);
+        window.scrollTo(0, 0);
+      }).catch(function() {
+        showOnly(errorBox);
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  })();
+</script>
+
+</body>
+</html>
