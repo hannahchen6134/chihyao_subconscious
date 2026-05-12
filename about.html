@@ -9,6 +9,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
+<style>
+  /* === 響應式微調（蓋過 shared.css）=== */
+  .qualities-head h2 {
+    word-break: keep-all;
+    text-wrap: balance;
+    text-wrap: pretty;
+  }
+  @media (max-width: 768px) {
+    .qualities-head h2 {
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+      padding: 0 1.4rem;
+    }
+    .qualities-head h2 .accent {
+      margin: 0 0.2rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .qualities-head h2 {
+      font-size: 1.2rem;
+      letter-spacing: 0.04em;
+    }
+  }
+  .page-header h1, .page-header p {
+    word-break: keep-all;
+    text-wrap: balance;
+    text-wrap: pretty;
+  }
+</style>
 </head>
 <body>
 

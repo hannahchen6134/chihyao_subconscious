@@ -297,6 +297,125 @@ h1, h2, h3, h4 {
   line-height: 2;
   max-width: 520px;
   margin: 0 auto;
+  word-break: keep-all;
+  text-wrap: balance;
+  text-wrap: pretty;
+}
+
+/* ============================================
+   SEARCH BAR
+   ============================================ */
+.search-wrap {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 1.4rem;
+  padding: 0 2rem;
+}
+.search-input {
+  width: 100%;
+  padding: 0.85rem 2.6rem 0.85rem 2.8rem;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--color-brown-deep);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  letter-spacing: 0.06em;
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  -webkit-appearance: none;
+}
+.search-input::placeholder {
+  color: var(--color-text-tertiary);
+  letter-spacing: 0.08em;
+}
+.search-input:focus {
+  border-color: var(--color-gold-border);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(184, 146, 74, 0.08);
+}
+.search-icon {
+  position: absolute;
+  left: calc(2rem + 1rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--color-text-tertiary);
+  pointer-events: none;
+}
+.search-clear {
+  position: absolute;
+  right: calc(2rem + 0.6rem);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  color: var(--color-brown-medium);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  padding: 0;
+}
+.search-clear:hover { background: var(--color-bg-tertiary); }
+.search-clear.visible { display: inline-flex; }
+.search-clear svg { width: 11px; height: 11px; }
+
+.search-result-info {
+  text-align: center;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.1em;
+  padding: 1.2rem 1rem 0;
+}
+.search-result-info strong {
+  color: var(--color-gold-deep);
+  font-weight: 500;
+}
+
+.search-empty {
+  text-align: center;
+  padding: 5rem 2rem;
+  font-family: var(--font-serif);
+  color: var(--color-text-secondary);
+  letter-spacing: 0.08em;
+  line-height: 2;
+}
+.search-empty h3 {
+  font-size: 1.15rem;
+  color: var(--color-brown-deep);
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.12em;
+}
+.search-empty p { font-size: 14px; }
+.search-empty .search-tip {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 13px;
+  color: var(--color-gold-deep);
+  border-bottom: 1px solid rgba(184, 146, 74, 0.4);
+  padding-bottom: 2px;
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  background: transparent;
+}
+.search-empty .search-tip:hover {
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.search-highlight {
+  background: rgba(184, 146, 74, 0.22);
+  color: var(--color-brown-deep);
+  padding: 0 2px;
+  border-radius: 2px;
+  font-weight: 500;
 }
 
 /* ============================================
@@ -652,8 +771,8 @@ h1, h2, h3, h4 {
   .nav-brand-mark { font-size: 22px; }
 
   .page-header { padding: 8.5rem 0 3.5rem; }
-  .page-header h1 { font-size: 1.6rem; letter-spacing: 0.08em; }
-  .page-header p { font-size: 14px; letter-spacing: 0.06em; }
+  .page-header h1 { font-size: 1.6rem; letter-spacing: 0.08em; word-break: keep-all; text-wrap: balance; }
+  .page-header p { font-size: 13.5px; letter-spacing: 0.04em; line-height: 1.95; padding: 0 1.5rem; }
   .page-eyebrow { font-size: 11.5px; letter-spacing: 0.32em; gap: 0.7rem; }
   .page-eyebrow::before, .page-eyebrow::after { width: 22px; }
 
@@ -734,16 +853,32 @@ h1, h2, h3, h4 {
 </header>
 
 <!-- ============================================
+     SEARCH
+     ============================================ -->
+<div class="search-wrap fade-in">
+  <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7"/>
+    <line x1="21" y1="21" x2="16.5" y2="16.5"/>
+  </svg>
+  <input type="search" id="searchInput" class="search-input" placeholder="搜尋文章標題或關鍵字⋯⋯" autocomplete="off" aria-label="搜尋專欄文章">
+  <button class="search-clear" id="searchClear" type="button" aria-label="清除搜尋">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+</div>
+
+<!-- ============================================
      FILTER
      ============================================ -->
 <div class="filter-bar">
   <div class="filter-inner">
     <button class="filter-btn active" data-filter="all">全部文章</button>
     <button class="filter-btn" data-filter="bazi">八字思維</button>
-    <button class="filter-btn" data-filter="hypno">療癒心情</button>
+    <button class="filter-btn" data-filter="hypno">療育心得</button>
     <button class="filter-btn" data-filter="case">案例分享</button>
     <button class="filter-btn" data-filter="practice">日常練習</button>
-    <button class="filter-btn" data-filter="growth">內在成長</button>
   </div>
 </div>
 
@@ -751,6 +886,9 @@ h1, h2, h3, h4 {
      ARTICLES (從 Google Sheets 動態載入)
      ============================================ -->
 <section class="articles-section">
+
+  <!-- 搜尋結果摘要（有關鍵字時顯示）-->
+  <div class="search-result-info" id="searchResultInfo" hidden></div>
 
   <!-- 載入中 -->
   <div class="articles-status" id="articlesLoading">
@@ -767,6 +905,13 @@ h1, h2, h3, h4 {
   <!-- 該分類沒有文章 -->
   <div class="articles-status" id="articlesNoMatch" hidden>
     <p>這個分類目前還沒有文章。</p>
+  </div>
+
+  <!-- 搜尋找不到結果 -->
+  <div class="search-empty" id="searchEmpty" hidden>
+    <h3>找不到符合的文章</h3>
+    <p>試試不同的關鍵字，或瀏覽全部文章。</p>
+    <button class="search-tip" id="resetSearch" type="button">清除搜尋條件 →</button>
   </div>
 
   <!-- 尚未設定 SHEET_ID -->
@@ -1123,11 +1268,11 @@ h1, h2, h3, h4 {
     // 中文分類 → 英文 filter key
     var CATEGORY_MAP = {
       '八字思維': 'bazi',
+      '療育心得': 'hypno',
       '療癒心情': 'hypno',
       '療育心情': 'hypno',
       '案例分享': 'case',
-      '日常練習': 'practice',
-      '內在成長': 'growth'
+      '日常練習': 'practice'
     };
 
     // 沒有封面圖時的漸層底色
@@ -1135,8 +1280,7 @@ h1, h2, h3, h4 {
       bazi:     ['#EFE6D3', '#B8924A'],
       hypno:    ['#E8EEDF', '#A8B89C'],
       case:     ['#F4DDD2', '#A87560'],
-      practice: ['#F0E4CC', '#C9A77A'],
-      growth:   ['#E5EBDF', '#7E9479']
+      practice: ['#F0E4CC', '#C9A77A']
     };
 
     function getCategoryKey(chineseCategory) {
@@ -1155,7 +1299,7 @@ h1, h2, h3, h4 {
         .replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
-    function renderCard(article) {
+    function renderCard(article, query) {
       var key = getCategoryKey(article.category);
       var colors = CATEGORY_COLORS[key] || CATEGORY_COLORS.bazi;
       var coverHtml = article.cover
@@ -1163,6 +1307,11 @@ h1, h2, h3, h4 {
         : '<div class="article-cover-fallback" style="background:linear-gradient(135deg,' + colors[0] + ' 0%,' + colors[1] + ' 100%)"></div>';
 
       var dateStr = (article.date || '').replace(/-/g, '.');
+      // 摘要 fallback：先用 summary，沒有就用內文前 80 字
+      var summary = article.summary || article.excerpt || (article.content || '').replace(/[#>*\-\n]/g, ' ').trim().slice(0, 80);
+
+      var titleHtml = highlightKeyword(escapeHtml(article.title), query);
+      var summaryHtml = highlightKeyword(escapeHtml(summary), query);
 
       return '<a href="article-template.html?id=' + encodeURIComponent(article.id) + '" class="article-card fade-in" data-category="' + key + '">' +
         '<div class="article-cover">' +
@@ -1170,40 +1319,91 @@ h1, h2, h3, h4 {
           coverHtml +
         '</div>' +
         '<div class="article-body">' +
-          '<h3>' + escapeHtml(article.title) + '</h3>' +
-          '<p class="article-excerpt">' + escapeHtml(article.excerpt) + '</p>' +
+          '<h3>' + titleHtml + '</h3>' +
+          '<p class="article-excerpt">' + summaryHtml + '</p>' +
           '<div class="article-meta"><span>' + escapeHtml(dateStr) + '</span><span class="article-meta-arrow">→</span></div>' +
         '</div>' +
       '</a>';
     }
 
+    // 把關鍵字外加 <mark class="search-highlight">
+    function highlightKeyword(safeHtml, query) {
+      if (!query) return safeHtml;
+      var q = query.trim();
+      if (!q) return safeHtml;
+      // 已是 escape 過的 HTML，這裡再 escape query 確保不會把使用者輸入當 regex 特殊字
+      var re = new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+      return safeHtml.replace(re, function(match) {
+        return '<mark class="search-highlight">' + match + '</mark>';
+      });
+    }
+
+    var searchEmpty = document.getElementById('searchEmpty');
+    var searchResultInfo = document.getElementById('searchResultInfo');
+    var searchInput = document.getElementById('searchInput');
+    var searchClear = document.getElementById('searchClear');
+    var resetSearchBtn = document.getElementById('resetSearch');
+    var currentQuery = '';
+
     function showOnly(el) {
-      [grid, loading, empty, noMatch, setup, errorBox].forEach(function(node) {
+      [grid, loading, empty, noMatch, setup, errorBox, searchEmpty].forEach(function(node) {
         if (!node) return;
         if (node === el) node.removeAttribute('hidden');
         else node.setAttribute('hidden', '');
       });
     }
 
-    function renderArticles(articles) {
+    function renderArticles(articles, query) {
       if (!articles.length) {
-        showOnly(currentFilter === 'all' ? empty : noMatch);
+        searchResultInfo.setAttribute('hidden', '');
+        if (query) {
+          showOnly(searchEmpty);
+        } else {
+          showOnly(currentFilter === 'all' ? empty : noMatch);
+        }
         return;
       }
-      grid.innerHTML = articles.map(renderCard).join('');
+      grid.innerHTML = articles.map(function(a) { return renderCard(a, query); }).join('');
       showOnly(grid);
+
+      // 顯示搜尋結果摘要
+      if (query) {
+        searchResultInfo.innerHTML = '搜尋「<strong>' + escapeHtml(query) + '</strong>」找到 <strong>' + articles.length + '</strong> 篇文章';
+        searchResultInfo.removeAttribute('hidden');
+      } else {
+        searchResultInfo.setAttribute('hidden', '');
+      }
 
       // 對新插入的卡片啟用淡入動畫
       grid.querySelectorAll('.fade-in').forEach(function(el) { fadeObserver.observe(el); });
     }
 
+    // 搜尋比對：標題、副標、摘要、內文、分類都比對
+    function matchesQuery(article, q) {
+      if (!q) return true;
+      var lowQ = q.toLowerCase();
+      var fields = [
+        article.title || '',
+        article.subtitle || '',
+        article.summary || '',
+        article.excerpt || '',
+        article.content || '',
+        article.category || ''
+      ];
+      for (var i = 0; i < fields.length; i++) {
+        if (fields[i].toLowerCase().indexOf(lowQ) !== -1) return true;
+      }
+      return false;
+    }
+
     function applyFilter() {
-      var filtered = currentFilter === 'all'
-        ? allArticles
-        : allArticles.filter(function(a) {
-            return getCategoryKey(a.category) === currentFilter;
-          });
-      renderArticles(filtered);
+      var q = currentQuery.trim();
+      var filtered = allArticles.filter(function(a) {
+        var matchCat = currentFilter === 'all' || getCategoryKey(a.category) === currentFilter;
+        var matchQ = matchesQuery(a, q);
+        return matchCat && matchQ;
+      });
+      renderArticles(filtered, q);
     }
 
     function init() {
@@ -1229,6 +1429,38 @@ h1, h2, h3, h4 {
           applyFilter();
         });
       });
+
+      // ===== 搜尋輸入處理（debounce 200ms）=====
+      var searchTimer = null;
+      function onSearchChange() {
+        currentQuery = searchInput.value;
+        if (currentQuery) searchClear.classList.add('visible');
+        else searchClear.classList.remove('visible');
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(applyFilter, 200);
+      }
+      searchInput.addEventListener('input', onSearchChange);
+
+      searchClear.addEventListener('click', function() {
+        searchInput.value = '';
+        currentQuery = '';
+        searchClear.classList.remove('visible');
+        applyFilter();
+        searchInput.focus();
+      });
+
+      if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          currentQuery = '';
+          currentFilter = 'all';
+          searchClear.classList.remove('visible');
+          filterBtns.forEach(function(b) {
+            b.classList.toggle('active', b.dataset.filter === 'all');
+          });
+          applyFilter();
+        });
+      }
     }
 
     if (document.readyState === 'loading') {

@@ -527,6 +527,139 @@ h1, h2, h3, h4 {
 }
 
 /* ============================================
+   SHARE BAR
+   ============================================ */
+.share-bar {
+  margin: 0 auto 3rem;
+  padding: 2rem 2rem 2rem;
+  max-width: 720px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.share-label {
+  font-family: var(--font-serif);
+  font-size: 13.5px;
+  color: var(--color-brown-medium);
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.share-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-gold);
+  opacity: 0.55;
+}
+.share-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-brown-deep);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0;
+  font-family: var(--font-sans);
+}
+.share-btn:hover {
+  background: var(--color-gold-light);
+  border-color: var(--color-gold-border);
+  color: var(--color-gold-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(184, 146, 74, 0.16);
+}
+.share-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+.share-btn[data-platform="line"]:hover { color: #06C755; }
+.share-btn[data-platform="facebook"]:hover { color: #1877F2; }
+.share-btn[data-platform="x"]:hover { color: #111; }
+.share-btn[data-platform="threads"]:hover { color: #111; }
+.share-btn[data-platform="native"] { background: linear-gradient(135deg, #C9A45F 0%, #B8924A 100%); color: #fff; border-color: transparent; }
+.share-btn[data-platform="native"]:hover { color: #fff; box-shadow: 0 8px 18px rgba(184, 146, 74, 0.28); }
+
+/* Tooltip 提示 */
+.share-btn .tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--color-brown-deep);
+  color: #fff;
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  padding: 0.35rem 0.7rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  font-family: var(--font-sans);
+}
+.share-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.share-btn .tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--color-brown-deep);
+}
+
+/* 複製成功 toast */
+.copy-toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--color-brown-deep);
+  color: #fff;
+  padding: 0.9rem 1.6rem;
+  border-radius: 999px;
+  font-size: 13.5px;
+  letter-spacing: 0.1em;
+  font-family: var(--font-serif);
+  box-shadow: 0 8px 24px rgba(58, 42, 20, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.copy-toast.visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.copy-toast svg { width: 16px; height: 16px; color: #B9D89C; }
+
+/* ============================================
    RELATED ARTICLES
    ============================================ */
 .related {
@@ -804,6 +937,15 @@ h1, h2, h3, h4 {
   .related-inner { padding: 0; }
   .related-head { padding: 0 1.4rem; }
 
+  .share-bar {
+    padding: 1.6rem 1.4rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .share-label { font-size: 12.5px; letter-spacing: 0.14em; }
+  .share-btn { width: 40px; height: 40px; }
+
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-brand { grid-column: span 2; }
   .footer-col:nth-child(4) { grid-column: span 2; }
@@ -929,6 +1071,52 @@ h1, h2, h3, h4 {
      ============================================ -->
 <div class="article-bottom">
 
+  <!-- ============================================
+       SHARE BAR
+       ============================================ -->
+  <div class="share-bar fade-in" id="shareBar">
+    <span class="share-label">SHARE　·　分享這篇文章</span>
+    <div class="share-buttons">
+      <button class="share-btn" type="button" data-platform="line" aria-label="分享到 Line">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11c0-5-4-8-9-8s-9 3-9 8c0 4.5 4 7.5 8 8 0 0-1 2-0.5 2.5C11 22 15.5 18.5 16.5 18 19.5 16.5 21 14 21 11Z"/>
+          <line x1="8" y1="10" x2="8" y2="13"/>
+          <path d="M11 13V10l2 3v-3"/>
+          <line x1="15" y1="10" x2="15" y2="13"/>
+          <line x1="15" y1="10" x2="17" y2="10"/>
+          <line x1="15" y1="11.5" x2="16.5" y2="11.5"/>
+          <line x1="15" y1="13" x2="17" y2="13"/>
+        </svg>
+        <span class="tooltip">Line</span>
+      </button>
+      <button class="share-btn" type="button" data-platform="facebook" aria-label="分享到 Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-0.4 2.9h-2.3v7A10 10 0 0 0 22 12Z"/>
+        </svg>
+        <span class="tooltip">Facebook</span>
+      </button>
+      <button class="share-btn" type="button" data-platform="x" aria-label="分享到 X">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.5 3h3l-6.6 7.5L22 21h-6l-4.7-6.1L5.8 21H2.8l7-8L2 3h6.1l4.3 5.7L17.5 3Zm-1 16h1.7L7.7 5H5.9l10.6 14Z"/>
+        </svg>
+        <span class="tooltip">X / Twitter</span>
+      </button>
+      <button class="share-btn" type="button" data-platform="threads" aria-label="分享到 Threads">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M16.7 11.3c-.1 0-.2-.1-.3-.1-.2-2.7-1.6-4.2-4-4.2-1.5 0-2.7.6-3.5 1.8l1.4 1c.5-.8 1.3-1.2 2.1-1.2 1.1 0 1.9.6 2.3 1.7-.7-.1-1.4-.2-2.1-.1-2.1.1-3.4 1.3-3.3 2.9.1 1.7 1.5 2.8 3.3 2.7 1.6-.1 2.7-1 3.3-2.4.5.2 1 .6 1.2 1 .4.7.4 1.7-.1 2.7-.6 1.1-1.7 1.7-3.4 1.7-1.5 0-2.7-.5-3.5-1.4-.7-.9-1.1-2.1-1.2-3.7s.4-2.8 1.2-3.7c.8-.9 2-1.4 3.5-1.4 1.6 0 2.8.5 3.6 1.4.4.5.7 1 1 1.7l1.7-.5c-.3-.9-.7-1.6-1.3-2.2-1.1-1.3-2.8-1.9-4.9-2-2.1 0-3.8.6-4.9 2-1.1 1.3-1.7 3-1.7 5.2 0 2.2.6 4 1.7 5.2 1.1 1.4 2.8 2 4.9 2.1 2.3 0 3.9-.6 5-1.7s1.6-2.8 1.4-4.2c-.3-1.5-1.1-2.6-2.3-3.2Zm-3.6 3c-.7.1-1.3-.2-1.3-.9 0-.5.5-.9 1.5-1 .2 0 .5 0 .7.1.5 0 .9 0 1.4.2-.2 1-.9 1.5-2.3 1.6Z"/>
+        </svg>
+        <span class="tooltip">Threads</span>
+      </button>
+      <button class="share-btn" type="button" data-platform="copy" aria-label="複製文章連結">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M10 13a5 5 0 0 0 7.07 0l3-3a5 5 0 0 0-7.07-7.07l-1 1"/>
+          <path d="M14 11a5 5 0 0 0-7.07 0l-3 3a5 5 0 0 0 7.07 7.07l1-1"/>
+        </svg>
+        <span class="tooltip">複製連結</span>
+      </button>
+    </div>
+  </div>
+
   <div class="author-card fade-in">
     <div class="author-avatar">智</div>
     <div class="author-info">
@@ -1008,6 +1196,12 @@ h1, h2, h3, h4 {
   </div>
 </footer>
 
+<!-- 複製成功提示 toast -->
+<div class="copy-toast" id="copyToast" role="status" aria-live="polite">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span>已複製連結</span>
+</div>
+
 <script src="sheets-config.js"></script>
 <script src="sheets-loader.js"></script>
 <script>
@@ -1068,16 +1262,15 @@ h1, h2, h3, h4 {
       bazi:     ['#EFE6D3', '#B8924A'],
       hypno:    ['#E8EEDF', '#A8B89C'],
       case:     ['#F4DDD2', '#A87560'],
-      practice: ['#F0E4CC', '#C9A77A'],
-      growth:   ['#E5EBDF', '#7E9479']
+      practice: ['#F0E4CC', '#C9A77A']
     };
     var CATEGORY_MAP = {
       '八字思維': 'bazi',
+      '療育心得': 'hypno',
       '療癒心情': 'hypno',
       '療育心情': 'hypno',
       '案例分享': 'case',
-      '日常練習': 'practice',
-      '內在成長': 'growth'
+      '日常練習': 'practice'
     };
     function getCategoryKey(c) { return CATEGORY_MAP[c] || 'bazi'; }
 
@@ -1212,6 +1405,102 @@ h1, h2, h3, h4 {
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
+    }
+  })();
+
+  // ============================================
+  // Share buttons
+  // ============================================
+  (function() {
+    var shareBar = document.getElementById('shareBar');
+    var toast = document.getElementById('copyToast');
+    if (!shareBar) return;
+
+    function getShareData() {
+      var title = document.querySelector('.article-title');
+      var titleText = title ? title.textContent.trim() : document.title;
+      return {
+        url: window.location.href,
+        title: titleText,
+        text: titleText + ' — 智堯專欄'
+      };
+    }
+
+    function showToast(msg) {
+      if (!toast) return;
+      var span = toast.querySelector('span');
+      if (span && msg) span.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(function() {
+        toast.classList.remove('visible');
+      }, 2200);
+    }
+
+    function copyLink(url) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function() {
+          showToast('已複製連結');
+        }).catch(fallbackCopy);
+      } else {
+        fallbackCopy();
+      }
+      function fallbackCopy() {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); showToast('已複製連結'); }
+        catch (e) { showToast('複製失敗，請手動複製'); }
+        document.body.removeChild(ta);
+      }
+    }
+
+    function openPopup(url) {
+      var w = 600, h = 540;
+      var left = (window.screen.width - w) / 2;
+      var top = (window.screen.height - h) / 2;
+      window.open(url, '_blank', 'width=' + w + ',height=' + h + ',left=' + left + ',top=' + top + ',noopener,noreferrer');
+    }
+
+    shareBar.addEventListener('click', function(e) {
+      var btn = e.target.closest('.share-btn');
+      if (!btn) return;
+      var platform = btn.dataset.platform;
+      var data = getShareData();
+      var u = encodeURIComponent(data.url);
+      var t = encodeURIComponent(data.title);
+
+      if (platform === 'copy') {
+        copyLink(data.url);
+      } else if (platform === 'line') {
+        openPopup('https://social-plugins.line.me/lineit/share?url=' + u + '&text=' + t);
+      } else if (platform === 'facebook') {
+        openPopup('https://www.facebook.com/sharer/sharer.php?u=' + u);
+      } else if (platform === 'x') {
+        openPopup('https://twitter.com/intent/tweet?url=' + u + '&text=' + t);
+      } else if (platform === 'threads') {
+        openPopup('https://www.threads.net/intent/post?text=' + t + '%20' + u);
+      } else if (platform === 'native') {
+        if (navigator.share) {
+          navigator.share({ title: data.title, text: data.text, url: data.url }).catch(function(){});
+        } else {
+          copyLink(data.url);
+        }
+      }
+    });
+
+    // 手機（支援 Web Share API）改用原生分享按鈕，更直覺
+    if (navigator.share && /Mobi|Android|iPhone/i.test(navigator.userAgent)) {
+      var copyBtn = shareBar.querySelector('[data-platform="copy"]');
+      if (copyBtn) {
+        copyBtn.setAttribute('data-platform', 'native');
+        copyBtn.setAttribute('aria-label', '分享給朋友');
+        var tip = copyBtn.querySelector('.tooltip');
+        if (tip) tip.textContent = '分享給朋友';
+      }
     }
   })();
 </script>
