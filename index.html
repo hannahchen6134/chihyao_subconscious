@@ -2042,10 +2042,15 @@ body::before {
    CTA STRIP
    ============================================ */
 .cta-strip {
-  background: transparent;
+  background: linear-gradient(180deg,
+    #F8EAB8 0%,
+    transparent 18%,
+    transparent 82%,
+    #F5E5B5 100%);
   padding: 6rem 0;
   position: relative;
   overflow: hidden;
+  z-index: 2;
 }
 .cta-strip::before {
   content: '';
@@ -2055,8 +2060,7 @@ body::before {
   background-size: cover;
   background-position: center 60%;
   background-repeat: no-repeat;
-  filter: saturate(0.25) brightness(1.35) contrast(0.78);
-  opacity: 0.5;
+  filter: saturate(0.4) brightness(1.2) contrast(0.85);
   z-index: 0;
   /* 多斷點極平滑漸變，肉眼幾乎察覺不到分界 */
   -webkit-mask-image: linear-gradient(180deg,
@@ -2092,16 +2096,16 @@ body::before {
   content: '';
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(180deg,
-      rgba(250, 241, 216, 0) 0%,
-      rgba(250, 241, 216, 0.15) 10%,
-      rgba(248, 235, 200, 0.35) 30%,
-      rgba(248, 232, 190, 0.42) 50%,
-      rgba(248, 232, 190, 0.35) 70%,
-      rgba(245, 229, 181, 0.15) 90%,
-      rgba(245, 229, 181, 0) 100%);
+  background: linear-gradient(180deg,
+    #F8EAB8 0%,
+    rgba(248, 234, 184, 0.85) 8%,
+    rgba(248, 232, 190, 0.55) 22%,
+    rgba(248, 232, 190, 0.35) 50%,
+    rgba(245, 229, 181, 0.55) 78%,
+    rgba(245, 229, 181, 0.88) 92%,
+    #F5E5B5 100%);
   z-index: 1;
+  pointer-events: none;
 }
 .cta-strip-inner { position: relative; z-index: 2; }
 .cta-strip-deco {
@@ -2379,23 +2383,71 @@ body::before {
   .cta-strip-deco { display: none; }
 
   .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 2.4rem;
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
     text-align: center;
   }
-  .footer-brand-mark { text-align: center; }
-  .footer-tag, .footer-tag-sub { text-align: center; }
-  .footer-col h5 { text-align: center; }
-  .footer-col ul { align-items: center; }
-  .footer-col a { justify-content: center; }
+  .footer-brand,
+  .footer-col,
+  .footer-col:nth-child(4) {
+    grid-column: 1 / -1 !important;
+    text-align: center;
+  }
+  .footer-brand-mark {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 1rem;
+  }
+  .footer-tag, .footer-tag-sub {
+    text-align: center;
+    word-break: keep-all;
+    text-wrap: balance;
+    line-height: 1.95;
+  }
+  .footer-tag {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+  }
+  .footer-tag-sub {
+    font-size: 12.5px;
+    padding: 0 1.4rem;
+  }
+  .footer-col h5 {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 0.9rem;
+  }
+  .footer-col ul {
+    align-items: center;
+    gap: 0.8rem;
+  }
+  .footer-col a {
+    justify-content: center;
+    font-size: 14px;
+  }
   .footer-bottom {
     flex-direction: column;
     align-items: center;
     text-align: center;
     gap: 1rem;
+    padding-top: 1.8rem;
   }
   .footer-slogan { text-align: center; font-size: 13px; }
   .footer-deco { display: none; }
+}
+
+/* === 寬度 ≤ 600px 強制 footer 單欄（防 1024 媒體查詢繼承 3 欄）=== */
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+  .footer-brand,
+  .footer-col,
+  .footer-col:nth-child(4) {
+    grid-column: 1 / -1 !important;
+  }
 }
 
 @media (max-width: 420px) {
